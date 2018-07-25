@@ -1,0 +1,50 @@
+<script type="text/javascript">
+    //<![CDATA[
+    var quoteBaseGrandTotal = <?php echo (float)$this->getQuoteBaseGrandTotal(); ?>;
+    var checkQuoteBaseGrandTotal = quoteBaseGrandTotal;
+    var payment = new Payment('checkout_form', '<?php echo $this->getUrl('checkout/onepage/savePayment') ?>');
+    var lastPrice;
+    //]]>
+</script>
+<div id="payment-error" class="error"></div>
+<fieldset>
+    <?php echo $this->getChildHtml('methods') ?>
+</fieldset>
+
+<div class="tool-tip" id="payment-tool-tip" style="display:none; position: absolute">
+    <div class="btn-close"><a href="#" id="payment-tool-tip-close"
+                              title="<?php echo $this->__('Close') ?>"><?php echo $this->__('Close') ?></a></div>
+    <div class="tool-tip-content"><img src="<?php echo $this->getSkinUrl('images/cvv.gif') ?>"
+                                       alt="<?php echo $this->__('Card Verification Number Visual Reference') ?>"
+                                       title="<?php echo $this->__('Card Verification Number Visual Reference') ?>"/>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    $$('.cvv-what-is-this').each(function (element) {
+        Event.observe(element, 'click', toggleToolTip);
+    });
+    function toggleToolTip(event) {
+        if ($('payment-tool-tip')) {
+            $('payment-tool-tip').setStyle({
+                top: (Event.pointerY(event) - 300) + 'px',
+                left: (Event.pointerX(event))+'px'
+            })
+            $('payment-tool-tip').toggle();
+        }
+        Event.stop(event);
+    }
+    if ($('payment-tool-tip-close')) {
+        Event.observe($('payment-tool-tip-close'), 'click', toggleToolTip);
+    }
+    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    payment.currentMethod = "<?php echo $this->getChild('methods')->getSelectedMethodCode() ?>";
+    $$('.cvv-what-is-this').each(function(element){
+        Event.observe(element, 'click', toggleToolTip);
+    });
+    //]]>
+</script>

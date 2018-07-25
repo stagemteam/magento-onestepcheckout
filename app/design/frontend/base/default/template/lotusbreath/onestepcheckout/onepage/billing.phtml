@@ -1,0 +1,348 @@
+<?php
+/**
+ * lotusbreath
+ */
+?>
+<?php
+    $relatedLocationFields = Mage::getStoreConfig("lotusbreath_onestepcheckout/general/location_fields");
+    if ($relatedLocationFields){
+        $relatedLocationFields = explode(',',$relatedLocationFields);
+    }else{
+        $relatedLocationFields = array('postcode', 'country_id', 'region_id','city');
+    }
+    $isAllowGuest = Mage::helper('checkout')->isAllowedGuestCheckout(Mage::getSingleton('checkout/session')->getQuote());
+    $isCheckEmailExists = false;
+    if (!$isAllowGuest && !Mage::getSingleton('customer/session')->isLoggedIn())
+        $isCheckEmailExists = true;
+?>
+
+<div style="color:red;" id="billing-error" class="error"></div>
+<fieldset>
+    <ul class="form-list">
+        <?php if ($this->customerHasAddresses()): ?>
+            <li>
+                <p style="width: 250px;"><?php echo $this->__('Select a billing address from your address book or enter a new address.') ?></p>
+
+                <div class="input-box">
+                    <?php echo $this->getAddressesHtmlSelect('billing') ?>
+                </div>
+            </li>
+        <?php endif; ?>
+        <li id="billing-new-address-form"<?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif; ?>>
+            <fieldset>
+                <input type="hidden" name="billing[address_id]" value="<?php echo $this->getAddress()->getId() ?>"
+                       id="billing:address_id"/>
+                <ul>
+                    <li class="fields">
+                        <?php if (!$this->isCustomerLoggedIn()): ?>
+
+                            <label for="billing:email"
+                                   class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+
+                            <div class="input-box input-box-wide">
+                                <input type="text" name="billing[email]" id="billing:email"
+                                       value="<?php echo $this->escapeHtml($this->getAddress()->getEmail()) ?>"
+                                       title="<?php echo $this->__('Email Address') ?>"
+                                       data-validate="{required:true, 'validate-email':true }"
+                                       class="input-text validate-email required-entry <?php echo $isCheckEmailExists ? 'check-email-exists' : '';?>"/>
+                            </div>
+
+                        <?php endif; ?>
+                    </li>
+                    <li class="fields"><?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setForceUseCustomerRequiredAttributes(!$this->isCustomerLoggedIn())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?></li>
+                    <li class="fields">
+
+                        <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/billingaddress/allowshowcompanyfield')): ?>
+
+                                <label for="billing:company"><?php echo $this->__('Company') ?></label>
+
+                                <div class="input-box input-box-wide">
+                                    <input type="text" id="billing:company" name="billing[company]"
+                                           value="<?php echo $this->escapeHtml($this->getAddress()->getCompany()) ?>"
+                                           title="<?php echo $this->__('Company') ?>"
+                                           class="input-text <?php echo $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('company') ?>"/>
+                                </div>
+
+                        <?php endif; ?>
+                    </li>
+
+                    <?php $_streetValidationClass = $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('street'); ?>
+                    <li class="fields">
+                        <label for="billing:street1" class="required"><em>*</em><?php echo $this->__('Address') ?>
+
+                        </label>
+
+                        <div class="input-box input-box-wide">
+                            <input type="text" title="<?php echo $this->__('Street Address') ?>"
+                                   name="billing[street][]" id="billing:street1"
+                                   value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(1)) ?>"
+                                   class="input-text <?php echo $_streetValidationClass ?>"/>
+                        </div>
+                    </li>
+                    <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                    <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                        <li class="fields">
+                            <div class="input-box input-box-wide">
+                                <input type="text" title="<?php echo $this->__('Street Address %s', $_i) ?>"
+                                       name="billing[street][]" id="billing:street<?php echo $_i ?>"
+                                       value="<?php echo $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>"
+                                       class="input-text <?php echo $_streetValidationClass ?>"/>
+                            </div>
+                        </li>
+                    <?php endfor; ?>
+                    <?php
+                    $isShowVATNumber = Mage::getStoreConfig('lotusbreath_onestepcheckout/billingaddress/allowshowvatnumberfield');
+                    if ($isShowVATNumber && $this->helper('lotusbreath_onestepcheckout')->isVatAttributeVisible()) :
+                    //if ($isShowVATNumber):
+                    ?>
+
+                        <li class="fields">
+                            <div class="field">
+                            <label for="billing:vat_id" class="required">
+                                <em>*</em>
+                                <?php echo $this->__('VAT Number') ?></label>
+                            <div class="input-box">
+                                <input type="text" id="billing:vat_id" name="billing[vat_id]"
+                                       value="<?php echo $this->escapeHtml($this->getAddress()->getVatId()) ?>"
+                                       title="<?php echo $this->__('VAT Number') ?>"
+                                       class="input-text <?php echo $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('vat_id') ?>"/>
+                            </div>
+                            </div>
+                        </li>
+                    <?php endif; ?>
+                    <li class="fields">
+                        <div class="field">
+                            <?php
+                            $changeLocationClass = '';
+                            if (in_array('city', $relatedLocationFields))
+                                $changeLocationClass = 'change_location_field';
+                            ?>
+                            <label for="billing:city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
+
+                            <div class="input-box">
+                                <input type="text" title="<?php echo $this->__('City') ?>" name="billing[city]"
+                                       value="<?php echo $this->escapeHtml($this->getAddress()->getCity()) ?>"
+                                       class="<?php echo $changeLocationClass;?> input-text <?php echo $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('city') ?>"
+                                       id="billing:city"/>
+                            </div>
+                        </div>
+                        <div class="field region ">
+
+                            <label for="billing:region_id"
+                                   class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
+
+                            <div class="input-box">
+                                <?php
+                                $changeLocationClass = '';
+
+                                if (in_array('region_id', $relatedLocationFields))
+                                    $changeLocationClass = 'change_location_field';
+                                ?>
+                                <select id="billing:region_id" name="billing[region_id]"
+                                        title="<?php echo $this->__('State/Province') ?>" class="validate-select"
+                                        class="<?php echo $changeLocationClass;?>"
+
+                                        style="display:none;"
+                                        <?php if (Mage::getStoreConfig('general/region/display_all') == false):?>disabled="disabled"<?php endif; ?>
+                                    >
+                                    <option
+                                        value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                                </select>
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    $('billing:region_id').setAttribute('defaultValue', "<?php echo $this->getAddress()->getRegionId() ?>");
+                                    //]]>
+                                </script>
+                                <input type="text" id="billing:region" name="billing[region]"
+                                       value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"
+                                       title="<?php echo $this->__('State/Province') ?>"
+                                       class=" <?php echo $changeLocationClass;?> input-text <?php echo $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('region') ?>"
+                                       style="display:none;"
+                                       <?php if (Mage::getStoreConfig('general/region/display_all') == false):?>disabled="disabled"<?php endif; ?>
+                                    />
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields">
+                        <div class="field">
+                            <label for="billing:postcode"
+                                   class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+
+                            <div class="input-box">
+                                <?php
+                                $changeLocationClass = '';
+                                if (in_array('postcode', $relatedLocationFields))
+                                    $changeLocationClass = 'change_location_field';
+                                ?>
+                                <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>"
+                                       name="billing[postcode]" id="billing:postcode"
+                                       value="<?php echo $this->escapeHtml($this->getAddress()->getPostcode()) ?>"
+                                       class="<?php echo $changeLocationClass; ?> input-text validate-zip-international <?php echo $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('postcode') ?>"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="billing:country_id"
+                                   class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+                            <div class="input-box">
+                                <?php echo $this->getCountryHtmlSelect('billing') ?>
+                            </div>
+                            <?php
+                            $changeLocationClass = '';
+                            if (in_array('country_id', $relatedLocationFields)):
+                                $changeLocationClass = 'change_location_field';
+
+                            ?>
+                            <script>
+                                var billingCountry = document.getElementById("billing:country_id");
+                                billingCountry.setAttribute('class', billingCountry.getAttribute('class') + ' <?php echo $changeLocationClass;?>');
+
+                            </script>
+                            <?php endif;?>
+                            <?php
+                            $changeLocationClass = '';
+                            if (in_array('region_id', $relatedLocationFields)):
+                                $changeLocationClass = 'update-location-region-class';
+                            ?>
+                            <script>
+                                var billingCountry = document.getElementById("billing:country_id");
+                                billingCountry.setAttribute('class', billingCountry.getAttribute('class') + ' <?php echo $changeLocationClass;?>');
+
+                            </script>
+                            <?php endif;?>
+                        </div>
+                    </li>
+                    <li class="fields">
+                        <div class="field">
+                            <label for="billing:telephone"
+                                   class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
+
+                            <div class="input-box">
+                                <input type="text" name="billing[telephone]"
+                                       value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>"
+                                       title="<?php echo $this->__('Telephone') ?>"
+                                       class="input-text <?php echo $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('telephone') ?>"
+                                       id="billing:telephone"/>
+                            </div>
+                        </div>
+                        <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/billingaddress/allowshowfaxfield')): ?>
+                            <div class="field">
+                                <label for="billing:fax"><?php echo $this->__('Fax') ?></label>
+
+                                <div class="input-box">
+                                    <input type="text" name="billing[fax]"
+                                           value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>"
+                                           title="<?php echo $this->__('Fax') ?>"
+                                           class="input-text <?php echo $this->helper('lotusbreath_onestepcheckout')->getAttributeValidationClass('fax') ?>"
+                                           id="billing:fax"/>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </li>
+                    <?php if (!$this->isCustomerLoggedIn()): ?>
+
+                        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+                        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+                        <?php if ($_dob->isEnabled() || $_gender->isEnabled()): ?>
+                            <li class="fields">
+                                <?php if ($_dob->isEnabled()): ?>
+                                    <div class="field">
+                                        <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($_gender->isEnabled()): ?>
+                                    <div class="field">
+                                        <?php echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                                    </div>
+                                <?php endif ?>
+                            </li>
+                        <?php endif ?>
+
+                        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+                        <?php if ($_taxvat->isEnabled()): ?>
+                            <li>
+                                <?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                            </li>
+                        <?php endif ?>
+                        <?php if ($isAllowGuest):?>
+                        <li class="fields">
+                            <input type="checkbox" name="billing[create_new_account]"
+                                   value=1/> <?php echo $this->__("Register new account"); ?>?
+                        </li>
+                        <?php else: ?>
+                            <p><strong><?php echo $this->__("Register new account - Enter your password:"); ?></strong></p>
+                        <?php endif; ?>
+                        <?php $passwordLiId = $isAllowGuest ? 'register-customer-password' : ''; ?>
+                        <li class="fields" id="<?php echo $passwordLiId;?>">
+                            <div class="field">
+                                <label for="billing:customer_password"
+                                       class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+
+                                <div class="input-box">
+                                    <input type="password" name="billing[customer_password]"
+                                           id="billing:customer_password" title="<?php echo $this->__('Password') ?>"
+                                           class="input-text required-entry validate-password"/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="billing:confirm_password"
+                                       class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+
+                                <div class="input-box">
+                                    <input type="password" name="billing[confirm_password]"
+                                           title="<?php echo $this->__('Confirm Password') ?>"
+                                           id="billing:confirm_password"
+                                           class="input-text required-entry validate-cpassword"/>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endif; ?>
+                    <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()): ?>
+                        <li class="control">
+                            <input type="checkbox" name="billing[save_in_address_book]" value="1"
+                                   title="<?php echo $this->__('Save in address book') ?>"
+                                   id="billing:save_in_address_book"
+                                   onchange="if(window.shipping) shipping.setSameAsBilling(false);"<?php if ($this->getAddress()->getSaveInAddressBook()): ?> checked="checked"<?php endif; ?>
+                                   class="checkbox"/>
+                            <label
+                                for="billing:save_in_address_book"><?php echo $this->__('Save in address book') ?></label>
+                        </li>
+                    <?php else: ?>
+                        <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1"/>
+                        </li>
+                    <?php endif; ?>
+                    <?php echo $this->getChildHtml('form.additional.info'); ?>
+                </ul>
+            </fieldset>
+        </li>
+        <?php /* Extensions placeholder */ ?>
+        <?php echo $this->getChildHtml('checkout.onepage.billing.extra') ?>
+        <?php
+            $alwaysusesameasbilling = Mage::getStoreConfig('lotusbreath_onestepcheckout/shippingaddress/alwaysusesameasbilling');
+        ?>
+        <?php if ($this->canShip() && $alwaysusesameasbilling == false): ?>
+            <li class="control">
+                <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes"
+                       value="1"<?php if ($this->isUseBillingAddressForShipping()) { ?> checked="checked"<?php } ?>
+                       title="<?php echo $this->__('Ship to this address') ?>"
+                        class="radio"/><label
+                    for="billing:use_for_shipping_yes"><?php echo $this->__('Ship to this address') ?></label></li>
+            <li class="control">
+                <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_no"
+                       value="0"<?php if (!$this->isUseBillingAddressForShipping()) { ?> checked="checked"<?php } ?>
+                       title="<?php echo $this->__('Ship to different address') ?>"
+                        class="radio"/><label
+                    for="billing:use_for_shipping_no"><?php echo $this->__('Ship to different address') ?></label>
+            </li>
+        <?php endif; ?>
+    </ul>
+    <?php if (!$this->canShip() || $alwaysusesameasbilling == true): ?>
+        <input type="hidden" name="billing[use_for_shipping]" value="1"/>
+    <?php endif; ?>
+
+</fieldset>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var billing = new Billing();
+
+</script>

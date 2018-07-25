@@ -11,17 +11,14 @@
   ],
   "extra": {
     "map": [
-      ["app/etc/modules/Rugento_Onestepcheckout.xml", "app/etc/modules/Rugento_Onestepcheckout.xml"],
-      ["app/code/local/Rugento/Onestepcheckout/", "app/code/local/Rugento/Onestepcheckout/"],
-      ["app/locale/ru_RU/onestepcheckout/", "app/locale/ru_RU/onestepcheckout/"],
-      
-      ["app/design/frontend/base/default/template/onestepcheckout/", "app/design/frontend/base/default/template/onestepcheckout/"],
-      ["app/design/frontend/base/default/layout/onestepcheckout/", "app/design/frontend/base/default/layout/onestepcheckout/"],
-      ["app/design/adminhtml/default/default/layout/onestepcheckout/", "app/design/adminhtml/default/default/layout/onestepcheckout/"],
+      ["app/etc/modules/LotusBreath_OneStepCheckout.xml", "app/etc/modules/LotusBreath_OneStepCheckout.xml"],
+      ["app/code/local/Lotusbreath/OneStepCheckout/", "app/code/local/Lotusbreath/OneStepCheckout/"],
+      ["app/locale/ru_RU/Lotusbreath_Onestepcheckout.csv", "app/locale/ru_RU/Lotusbreath_Onestepcheckout.csv"],
 
-      ["skin/frontend/base/default/images/onestepcheckout/", "skin/frontend/base/default/images/onestepcheckout/"],
-      ["skin/frontend/base/default/js/onestepcheckout/", "skin/frontend/base/default/js/onestepcheckout/"],
-      ["skin/frontend/base/default/css/onestepcheckout/", "skin/frontend/base/default/css/onestepcheckout/"]
+      ["app/design/frontend/base/default/layout/lotusbreath/onestepcheckout.xml", "app/design/frontend/base/default/layout/lotusbreath/onestepcheckout.xml"],
+      ["app/design/frontend/base/default/template/lotusbreath/onestepcheckout/", "app/design/frontend/base/default/template/lotusbreath/onestepcheckout/"],
+
+      ["skin/frontend/base/default/lotusbreath/", "skin/frontend/base/default/lotusbreath/"]
     ]
   }
 }

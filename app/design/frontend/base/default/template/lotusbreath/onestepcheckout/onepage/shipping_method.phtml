@@ -1,0 +1,15 @@
+<div id="shippingmethod-error" class="error"></div>
+<div id="checkout-shipping-method-load">
+
+    <?php echo $this->getChildHtml('available') ?>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var shippingMethod = new ShippingMethod('checkout_form', "<?php echo $this->getUrl('checkout/onepage/saveShippingMethod') ?>");
+    //]]>
+</script>
+<div id="onepage-checkout-shipping-method-additional-load">
+    <?php echo $this->getChildHtml('additional') ?>
+</div>
+

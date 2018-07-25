@@ -1,0 +1,250 @@
+<!--
+Lotus Breath - One Step Checkout
+Copyright (C) 2014  Lotus Breath
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<config>
+    <modules>
+        <Lotusbreath_OneStepCheckout>
+            <version>4.1.2</version>
+        </Lotusbreath_OneStepCheckout>
+    </modules>
+    <frontend>
+        <secure_url>
+            <onestepcheckout>/onestepcheckout</onestepcheckout>
+            <onestepcheckout_index>/onestepcheckout/index</onestepcheckout_index>
+            <onestepcheckout_service>/onestepcheckout/service</onestepcheckout_service>
+        </secure_url>
+        <routers>
+            <lotusbreath_onestepcheckout>
+                <use>standard</use>
+                <args>
+                    <module>Lotusbreath_OneStepCheckout</module>
+                    <frontName>onestepcheckout</frontName>
+                </args>
+            </lotusbreath_onestepcheckout>
+        </routers>
+        <layout>
+            <updates>
+                <lotusbreath_onestepcheckout>
+                    <file>lotusbreath/onestepcheckout.xml</file>
+                </lotusbreath_onestepcheckout>
+            </updates>
+        </layout>
+        <events>
+            <sales_model_service_quote_submit_before>
+                <observers>
+                    <lotusbreath_onestepcheckout>
+                        <type>model</type>
+                        <class>lotusbreath_onestepcheckout/observer</class>
+                        <method>addHistoryComment</method>
+                    </lotusbreath_onestepcheckout>
+                </observers>
+            </sales_model_service_quote_submit_before>
+            <checkout_cart_add_product_complete>
+                <observers>
+                    <lotusbreath_onestepcheckout>
+                        <type>model</type>
+                        <class>lotusbreath_onestepcheckout/observer</class>
+                        <method>redirectToOnestepcheckout</method>
+                    </lotusbreath_onestepcheckout>
+                </observers>
+            </checkout_cart_add_product_complete>
+            <controller_action_postdispatch_lotusbreath_onestepcheckout_index_savePost>
+                <observers>
+                    <hss_save_order_onepage>
+                        <class>paypal/observer</class>
+                        <method>setResponseAfterSaveOrder</method>
+                    </hss_save_order_onepage>
+                </observers>
+            </controller_action_postdispatch_lotusbreath_onestepcheckout_index_savePost>
+        </events>
+        <translate>
+            <modules>
+                <Lotusbreath_OneStepCheckout>
+                    <files>
+                        <default>Lotusbreath_Onestepcheckout.csv</default>
+                    </files>
+                </Lotusbreath_OneStepCheckout>
+            </modules>
+        </translate>
+
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Lotusbreath_OneStepCheckout>
+                    <files>
+                        <default>Lotusbreath_Onestepcheckout.csv</default>
+                    </files>
+                </Lotusbreath_OneStepCheckout>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <lotusbreath_onestepcheckout>
+                                            <title>Lotusbreath - One step checkout</title>
+                                        </lotusbreath_onestepcheckout>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <global>
+        <models>
+            <lotusbreath_onestepcheckout>
+                <class>Lotusbreath_OneStepCheckout_Model</class>
+            </lotusbreath_onestepcheckout>
+        </models>
+        <resources>
+            <lotusbreath_onestepcheckout_setup>
+                <setup>
+                    <module>Lotusbreath_OneStepCheckout</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </lotusbreath_onestepcheckout_setup>
+            <lotusbreath_onestepcheckout_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </lotusbreath_onestepcheckout_write>
+            <lotusbreath_onestepcheckout_write_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </lotusbreath_onestepcheckout_write_read>
+        </resources>
+        <blocks>
+            <paypal>
+                <rewrite>
+                    <iframe>Lotusbreath_OneStepCheckout_Block_Paypal_Iframe</iframe>
+                </rewrite>
+            </paypal>
+            <checkout>
+                <rewrite>
+                    <links>Lotusbreath_OneStepCheckout_Block_Checkout_Links</links>
+                </rewrite>
+            </checkout>
+
+            <lotusbreath_onestepcheckout>
+                <class>Lotusbreath_OneStepCheckout_Block</class>
+            </lotusbreath_onestepcheckout>
+
+            <lb_osc>
+                <class>Lotusbreath_OneStepCheckout_Block</class>
+            </lb_osc>
+
+            <checkout>
+                <rewrite>
+                    <onepage_link>Lotusbreath_OneStepCheckout_Block_Onepage_Link</onepage_link>
+                </rewrite>
+            </checkout>
+        </blocks>
+        <helpers>
+            <checkout>
+                <rewrite>
+                    <url>Lotusbreath_OneStepCheckout_Helper_Url</url>
+                </rewrite>
+            </checkout>
+            <lotusbreath_onestepcheckout>
+                <class>Lotusbreath_OneStepCheckout_Helper</class>
+            </lotusbreath_onestepcheckout>
+            <lb_osc>
+                <class>Lotusbreath_OneStepCheckout_Helper</class>
+            </lb_osc>
+            <!--
+            <onestepcheckout>
+                <class>Lotusbreath_OneStepCheckout_Helper</class>
+            </onestepcheckout>
+            -->
+        </helpers>
+    </global>
+    <default>
+        <lotusbreath_onestepcheckout>
+            <general>
+                <enabled>1</enabled>
+                <allowcomment>1</allowcomment>
+                <allowshowcoupon>1</allowshowcoupon>
+
+                <allowsubscribe>1</allowsubscribe>
+                <autochecksubscriber>1</autochecksubscriber>
+                <allowshowgiftmessage>0</allowshowgiftmessage>
+
+                <defaultcountry>US</defaultcountry>
+
+                <redirect_to_afteraddtocart>0</redirect_to_afteraddtocart>
+                <location_fields>country_id,postcode,region_id,city</location_fields>
+                <loadshippingrateswhenfillall>0</loadshippingrateswhenfillall>
+                <autodetectlocation>0</autodetectlocation>
+            </general>
+            <billingaddress>
+                <allowshowcompanyfield>1</allowshowcompanyfield>
+                <allowshowvatnumberfield>1</allowshowvatnumberfield>
+                <allowshowfaxfield>1</allowshowfaxfield>
+            </billingaddress>
+
+            <shippingaddress>
+                <allowshowcompanyfield>1</allowshowcompanyfield>
+                <allowshowvatnumberfield>1</allowshowvatnumberfield>
+                <allowshowfaxfield>1</allowshowfaxfield>
+                <useshortshippingaddress>0</useshortshippingaddress>
+            </shippingaddress>
+            <layout>
+                <layout>2cols</layout>
+                <commentpos>below_payment</commentpos>
+                <discountpos>below_payment</discountpos>
+            </layout>
+
+            <revieworder>
+                <can_edit_cart>1</can_edit_cart>
+                <show_image>1</show_image>
+                <review_image_width>80</review_image_width>
+                <review_image_height>80</review_image_height>
+
+            </revieworder>
+            <speedoptimizer>
+                <disablerssobserver>0</disablerssobserver>
+                <disablevisitorlog>0</disablevisitorlog>
+            </speedoptimizer>
+            <content>
+                <display_bottom_static_block>1</display_bottom_static_block>
+                <display_top_static_block>1</display_top_static_block>
+                <pagetitle>One Step Checkout</pagetitle>
+                <pagedescription>Please Enter your details bellow to complete your purchase</pagedescription>
+                <billing_header><![CDATA[<span>1. Billing Information</span>]]></billing_header>
+                <shipping_method_header><![CDATA[<span>2. Shipping Method</span>]]></shipping_method_header>
+                <payment_method_header><![CDATA[<span>3. Payment Method</span>]]></payment_method_header>
+                <review_header><![CDATA[<span>4. Review order</span>]]></review_header>
+                <shipping_address_header><![CDATA[<span>Shipping Information</span>]]></shipping_address_header>
+            </content>
+            <compatibility>
+                <is_load_gumby>1</is_load_gumby>
+                <is_load_jquery>1</is_load_jquery>
+                <is_load_jqueryui>1</is_load_jqueryui>
+            </compatibility>
+        </lotusbreath_onestepcheckout>
+    </default>
+</config>

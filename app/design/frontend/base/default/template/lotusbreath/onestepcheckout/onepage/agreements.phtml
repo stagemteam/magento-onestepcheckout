@@ -1,0 +1,31 @@
+<?php
+/**
+ * Lotusbreath
+ * @see Mage_Checkout_Block_Agreements
+ */
+?>
+
+<?php if (!$this->getAgreements()) return; ?>
+<?php foreach ($this->getAgreements() as $_a): ?>
+    <p class="agree">
+        <input type="checkbox" id="agreement-<?php echo $_a->getId() ?>" name="agreement[<?php echo $_a->getId() ?>]"
+               value="1" title="<?php echo $this->htmlEscape($_a->getCheckboxText()) ?>" class="checkbox"/>
+        <label for="agreement-<?php echo $_a->getId() ?>">
+            <a class="a-agreement" href="#"
+               rel="aggrement-popup-<?php echo $_a->getId() ?>" title=""><?php echo $_a->getIsHtml() ? $_a->getCheckboxText() : $this->htmlEscape($_a->getCheckboxText()) ?></a>
+        </label>
+        <div class="aggrement-popup white-popup mfp-hide" title="<?php echo $_a->getName(); ?>" id="aggrement-popup-<?php echo $_a->getId() ?>">
+
+            <div style="margin: auto; padding: 10px; 10px;">
+                <h2><?php echo $_a->getName(); ?></h2>
+            <?php echo ($_a->getContent()); ?>
+            </div>
+        </div>
+    </p>
+<?php endforeach ?>
+
+<div id="agreenment-error" class="error">
+</div>
+
+
+

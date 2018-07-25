@@ -1,0 +1,624 @@
+<!--
+Lotus Breath - One Step Checkout
+Copyright (C) 2014  Lotus Breath
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<config>
+    <tabs>
+        <lotusbreath translate="label" module="lotusbreath_onestepcheckout">
+            <label>Lotus Breath</label>
+            <sort_order>100</sort_order>
+        </lotusbreath>
+    </tabs>
+    <sections>
+        <lotusbreath_onestepcheckout translate="label" module="lotusbreath_onestepcheckout">
+        <class>separator-top</class>
+        <label>One Step Checkout</label>
+        <tab>lotusbreath</tab>
+        <sort_order>130</sort_order>
+        <show_in_default>1</show_in_default>
+        <show_in_website>1</show_in_website>
+        <show_in_store>1</show_in_store>
+        <groups>
+            <sisow_notice translate="label" module="lotusbreath_onestepcheckout">
+                <frontend_model>lb_osc/config_info</frontend_model>
+                <sort_order>0</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+            </sisow_notice>
+            <general>
+                <label>General</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>1</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <fields>
+
+                    <enabled translate="label comment">
+                        <label>Enabled</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </enabled>
+                    <allowcomment translate="label">
+                        <label>Allow add a comment</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>4</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </allowcomment>
+                    <allowshowcoupon translate="label">
+                        <label>Allow to show coupon </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>5</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </allowshowcoupon>
+                    <allowshowgiftmessage translate="label">
+                        <label>Allow to show gift message </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>6</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </allowshowgiftmessage>
+                    <defaultcountry translate="label">
+                        <label>Default Country </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_country</source_model>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </defaultcountry>
+                    <redirect_to_afteraddtocart>
+                        <label>Go to checkout page after add product to cart </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>11</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </redirect_to_afteraddtocart>
+                    <location_fields>
+                        <label>Locale Fields</label>
+                        <frontend_type>multiselect</frontend_type>
+                        <source_model>lotusbreath_onestepcheckout/adminhtml_system_config_source_locationfields</source_model>
+                        <sort_order>15</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment><![CDATA[
+                        Shipping rates and Payment will be updated when these fields are changed.
+                        ]]></comment>
+                        <depends><enabled>1</enabled></depends>
+                    </location_fields>
+
+                    <loadshippingrateswhenfillall>
+                        <label>Ony load shipping rates when customer fill all locale fields</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>16</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                        <comment>Recommend Off</comment>
+                    </loadshippingrateswhenfillall>
+
+                    <allowsubscribe translate="label">
+                        <label>Allow customer subscribe newsletter</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>17</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </allowsubscribe>
+
+                    <autochecksubscriber translate="label">
+                        <label>Check as subcriber as default </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>17</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </autochecksubscriber>
+
+                    <autodetectlocation translate="label">
+                        <label>Auto detect the location</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>18</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><enabled>1</enabled></depends>
+                    </autodetectlocation>
+                    <defaultpayment>
+                        <label>Default Payment Method</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_payment_allmethods</source_model>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </defaultpayment>
+
+                </fields>
+            </general>
+            <billingaddress translate="label">
+                <label>Billing Address Setttings</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>2</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <fields >
+                    <allowshowcompanyfield translate="label">
+                        <label>Show company field in address form </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>8</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </allowshowcompanyfield>
+                    <allowshowfaxfield translate="label">
+                        <label>Show FAX field in address form </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>9</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </allowshowfaxfield>
+                    <allowshowvatnumberfield translate="label">
+                        <label>Show VAT Number in Billing Address </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>9</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+
+                    </allowshowvatnumberfield>
+                </fields>
+            </billingaddress>
+            <shippingaddress translate="label">
+                <label>Shipping Address Setttings</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>2</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <fields >
+                    <alwaysusesameasbilling>
+                        <label>Always use shipping address as billing address </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>8</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </alwaysusesameasbilling>
+                    <allowshowcompanyfield translate="label">
+                        <label>Show company field in address form </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>8</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><alwaysusesameasbilling>0</alwaysusesameasbilling></depends>
+                    </allowshowcompanyfield>
+
+                    <allowshowfaxfield translate="label">
+                        <label>Show FAX field in address form </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>9</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><alwaysusesameasbilling>0</alwaysusesameasbilling></depends>
+                    </allowshowfaxfield>
+                    <allowshowvatnumberfield translate="label">
+                        <label>Show VAT Number in address form  </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>9</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><alwaysusesameasbilling>0</alwaysusesameasbilling></depends>
+                    </allowshowvatnumberfield>
+
+                    <useshortshippingaddress>
+                        <label>Use short shipping address form</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>13</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>Hide fields : Firstname, Lastname, Company, and get it from Billing Address </comment>
+                        <depends><alwaysusesameasbilling>0</alwaysusesameasbilling></depends>
+                    </useshortshippingaddress>
+                </fields>
+            </shippingaddress>
+            <revieworder translate="label">
+                <label>Shopping Cart Items(In review order)</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>3</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <fields>
+                    <can_edit_cart>
+                        <label>Can edit cart ?</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </can_edit_cart>
+                    <show_link_cart>
+                        <label>Show link go to cart ?</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </show_link_cart>
+                    <show_image>
+                        <label>Show the image of item</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </show_image>
+                    <review_image_width>
+                        <label>Item image width</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <validate>validate-number</validate>
+
+                        <depends>
+                            <show_image>1</show_image>
+                        </depends>
+                    </review_image_width>
+                    <review_image_height>
+                        <label>Item image height</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>3</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends>
+                            <show_image>1</show_image>
+                        </depends>
+                    </review_image_height>
+
+                </fields>
+
+            </revieworder>
+
+            <content>
+                <label>Manage content of checkout page</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>4</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <comment>
+                    <![CDATA[
+                        <style>
+                            .form-list td.value textarea { height: 5em;}
+                        </style>
+                    ]]>
+                </comment>
+                <fields>
+                    <pagetitle translate="label">
+                        <label>Page title</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+
+                    </pagetitle>
+                    <pagedescription translate="label">
+                        <label>Page description</label>
+                        <frontend_type>textarea</frontend_type>
+                        <sort_order>3</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </pagedescription>
+                    <display_top_static_block>
+                        <label>Display top static block</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>4</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </display_top_static_block>
+                    <display_bottom_static_block>
+                        <label>Display bottomm static block</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>4</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </display_bottom_static_block>
+                    <billing_header>
+                        <label>Billing header</label>
+                        <frontend_type>textarea</frontend_type>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </billing_header>
+                    <shipping_method_header>
+                        <label>Shipping method header</label>
+                        <frontend_type>textarea</frontend_type>
+                        <sort_order>11</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </shipping_method_header>
+                    <payment_method_header>
+                        <label>Payment method header</label>
+                        <frontend_type>textarea</frontend_type>
+                        <sort_order>12</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </payment_method_header>
+                    <review_header>
+                        <label>Review order header</label>
+                        <frontend_type>textarea</frontend_type>
+                        <sort_order>13</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </review_header>
+                    <shipping_address_header>
+                        <label>Shipping address header</label>
+                        <frontend_type>textarea</frontend_type>
+                        <sort_order>14</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </shipping_address_header>
+                </fields>
+            </content>
+            <layout>
+                <label>Manage layout checkout page</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>3</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <fields>
+                    <layout>
+                        <label>Layout</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>lotusbreath_onestepcheckout/adminhtml_system_config_source_layout</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </layout>
+                    <commentpos>
+                        <label>Comment Position</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>lotusbreath_onestepcheckout/adminhtml_system_config_source_ladditionposistion</source_model>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><layout>3cols</layout></depends>
+                    </commentpos>
+
+                    <discountpos>
+                        <label>Discount Position</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>lotusbreath_onestepcheckout/adminhtml_system_config_source_ladditionposistion</source_model>
+                        <sort_order>3</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <depends><layout>3cols</layout></depends>
+                    </discountpos>
+
+                </fields>
+            </layout>
+            <checkout_process>
+                <label>Checkout Proccess Customize</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>10</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <comment>
+                    <![CDATA[
+                        You can customize the checkout process here.
+                    ]]>
+                </comment>
+                <fields>
+                    <shipping_method_is_loading_payment>
+                        <label>Is loading Payment when updating shipping method</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>
+                            <![CDATA[
+                            ]]>
+                        </comment>
+                    </shipping_method_is_loading_payment>
+                    <payment_is_loading_shipping_method>
+                        <label>Is loading Shipping Methods when updating Payment Methods</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>
+                            <![CDATA[
+                            ]]>
+                        </comment>
+                    </payment_is_loading_shipping_method>
+                </fields>
+            </checkout_process>
+            <speedoptimizer>
+                <label>Speed Optimizer</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>14</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <comment>
+                    <![CDATA[
+                                It take effect only in this extension, none in default Magento checkout page.
+                    ]]>
+                </comment>
+                <fields>
+                    <disablerssobserver translate="label comment">
+                        <label>Disable Rss Obserser </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>
+                            <![CDATA[
+                                If you choose Yes, we will disable customer order feed and low stock feed.
+                                It will increase significant speed of your checkout process.
+                            ]]>
+
+                        </comment>
+                    </disablerssobserver>
+                    <!--
+                    <disablevisitorlog translate="label comment">
+                        <label>Disable Visitor Log </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>
+                            <![CDATA[
+                                If you choose Yes, we will disable visitor log feature while the customer use checkout page.
+                                It will also increase significant speed of your checkout process.
+                            ]]>
+                        </comment>
+                    </disablevisitorlog>
+                    -->
+                </fields>
+            </speedoptimizer>
+
+            <compatibility>
+                <label>Compatibility (Advanced)</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>15</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <fields>
+                    <is_load_gumby>
+                        <label>Is load Gumby css framework</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>
+                            <![CDATA[
+                                You must load gumby css for responsive template. If you loaded it before, you can disable it.
+                                We recommend enable.
+                                <a target="_blank" href="http://gumbyframework.com/">Gumby</a>
+                            ]]>
+                        </comment>
+                    </is_load_gumby>
+                    <is_load_jquery>
+                        <label>Is load JQuery</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>
+                            <![CDATA[
+                                You must load Jquery. If you loaded it before, you can disable it.We recommend enable.
+                            ]]>
+                        </comment>
+                    </is_load_jquery>
+                    <is_load_jqueryui>
+                        <label>Is load Jquery UI</label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>1</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <comment>
+                            <![CDATA[
+                                You must load Jquery UI. If you loaded it before, you can disable it.We recommend enable.
+                            ]]>
+                        </comment>
+                    </is_load_jqueryui>
+                </fields>
+            </compatibility>
+        </groups>
+
+        </lotusbreath_onestepcheckout>
+    </sections>
+ </config>

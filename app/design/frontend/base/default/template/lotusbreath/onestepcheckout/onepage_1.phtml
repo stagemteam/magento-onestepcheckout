@@ -1,0 +1,306 @@
+<ol class="" id="checkoutSteps">
+    <li id="opc-login" class="section allow  active">
+        <div class="">
+            <!--<span class="number">1</span>-->
+            <!--<h2>Checkout Method</h2>-->
+
+        </div>
+        <div id="checkout-step-login" class="step a-item">
+            <div class="col2-set">
+                <div class="input-box">
+                    <input id="id_create" type="checkbox" value="1" name="id_create">
+                    <label for="id_create">Already registered?Click here to Login</label>
+                </div>                
+                <div class="col-1">
+                    <h3></h3>
+                    <form id="login-form" action="" method="post" >
+                        <fieldset>
+                            <ul class="form-list" style="">
+                                <li>
+                                    <div class="input-box">
+                                        <label for="login-email">Email Address <em>*</em></label>
+                                        <input type="text" class="input-text required-entry validate-email" id="login-email" name="login[username]" value="" style="width: 218px;">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="input-box">
+                                        <label for="login-password">Password <em>*</em></label>
+                                        <input type="password" class="input-text required-entry" id="login-password" name="login[password]" style="width: 218px;">
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="buttons-set" style="margin-top: 0px; width: 218px;">
+                                <a href="http://demo.mage-extensions-themes.com/quick-one-page-checkout/customer/account/forgotpassword/" class="f-left">Forgot your password?</a>
+                                <button type="submit" class="button" onclick="loginForm.submit()"><span><span>Login</span></span></button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>            
+        </div>
+    </li>
+    <li id="opc-billing" class="section  ">
+        <div class="">
+            <span class="number">2</span>
+            <h2>Billing Information</h2>
+
+        </div>
+        <div id="checkout-step-billing" class="step a-item">            
+            <form id="co-billing-form" action="">
+                <p class="qocadvancedcheckout-title">
+                    <img width="28" height="40" src="http://demo.mage-extensions-themes.com/quick-one-page-checkout/skin/frontend/default/f001/images/checkout-numbers-1.png ">
+                    Billing Information
+                </p>
+                <fieldset>
+                    <ul class="qocadvanced-form">
+                        <li id="billing-new-address-form">
+                            <fieldset class="">
+                                <input type="hidden" name="billing[address_id]" value="" id="billing:address_id" style="width: 220px;">
+                                <ul>
+                                    <li class="fields"><div class="customer-name">
+                                            <div class="field name-firstname">
+                                                <label for="billing:firstname" class="required"><em>*</em>First Name</label>
+                                                <div class="input-box">
+                                                    <input type="text" style="margin-left: 2px;" id="billing:firstname" name="billing[firstname]" value="" title="First Name" maxlength="255" class="input-text required-entry">
+                                                </div>
+                                            </div>
+                                            <div class="field name-lastname" style="width: 120px; margin-left: 145px; margin-top: -41px;">
+                                                <label for="billing:lastname" class="required"><em>*</em>Last Name</label>
+                                                <div class="input-box">
+                                                    <input type="text" style="margin-left: 0px;" id="billing:lastname" name="billing[lastname]" value="" title="Last Name" maxlength="255" class="input-text required-entry">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="fields">
+                                        <div class="field">
+                                            <label for="billing:company">Company</label>
+                                            <div class="input-box">
+                                                <input type="text" id="billing:company" name="billing[company]" value="" title="Company" class="input-text">
+                                            </div>
+                                        </div>
+                                        <div class="check-align1">
+                                            <label for="billing:email" class="required"><em>*</em>Email Address</label>
+                                            <div class="input-box">
+                                                <input type="text" name="billing[email]" id="billing:email" value="" title="Email Address" class="input-text validate-email required-entry">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="wide">
+                                        <label for="billing:street1" class="required"><em>*</em>Address</label>
+                                        <div class="input-box">
+                                            <input type="text" title="Street Address" name="billing[street][]" id="billing:street1" value="" class="input-text required-entry" style="width: 262px;">
+                                        </div>
+                                    </li>
+                                    <li class="wide">
+                                        <div class="input-box">
+                                            <input type="text" title="Street Address 2" name="billing[street][]" id="billing:street2" value="" class="input-text" style="width: 262px;">
+                                        </div>
+                                    </li>
+                                    <li class="fields" style="">
+                                        <div class="field">
+                                            <label for="billing:city" class="required"><em>*</em>City</label>
+                                            <div class="input-box">
+                                                <input type="text" title="City" name="billing[city]" value="" class="input-text required-entry" id="billing:city">
+                                            </div>
+                                        </div>
+                                        <div class="check-align1">
+                                            <label for="billing:region_id" class="required"><em>*</em>State/Province</label>
+                                            <div class="input-box">
+                                                <select id="billing:region_id" name="billing[region_id]" title="State/Province" class="validate-select required-entry" style="" defaultvalue="">
+                                                    <option value="">Please select region, state or province</option>
+                                                    <option value="1" title="Alabama">Alabama</option><option value="2" title="Alaska">Alaska</option><option value="3" title="American Samoa">American Samoa</option><option value="4" title="Arizona">Arizona</option><option value="5" title="Arkansas">Arkansas</option><option value="6" title="Armed Forces Africa">Armed Forces Africa</option><option value="7" title="Armed Forces Americas">Armed Forces Americas</option><option value="8" title="Armed Forces Canada">Armed Forces Canada</option><option value="9" title="Armed Forces Europe">Armed Forces Europe</option><option value="10" title="Armed Forces Middle East">Armed Forces Middle East</option><option value="11" title="Armed Forces Pacific">Armed Forces Pacific</option><option value="12" title="California">California</option><option value="13" title="Colorado">Colorado</option><option value="14" title="Connecticut">Connecticut</option><option value="15" title="Delaware">Delaware</option><option value="16" title="District of Columbia">District of Columbia</option><option value="17" title="Federated States Of Micronesia">Federated States Of Micronesia</option><option value="18" title="Florida">Florida</option><option value="19" title="Georgia">Georgia</option><option value="20" title="Guam">Guam</option><option value="21" title="Hawaii">Hawaii</option><option value="22" title="Idaho">Idaho</option><option value="23" title="Illinois">Illinois</option><option value="24" title="Indiana">Indiana</option><option value="25" title="Iowa">Iowa</option><option value="26" title="Kansas">Kansas</option><option value="27" title="Kentucky">Kentucky</option><option value="28" title="Louisiana">Louisiana</option><option value="29" title="Maine">Maine</option><option value="30" title="Marshall Islands">Marshall Islands</option><option value="31" title="Maryland">Maryland</option><option value="32" title="Massachusetts">Massachusetts</option><option value="33" title="Michigan">Michigan</option><option value="34" title="Minnesota">Minnesota</option><option value="35" title="Mississippi">Mississippi</option><option value="36" title="Missouri">Missouri</option><option value="37" title="Montana">Montana</option><option value="38" title="Nebraska">Nebraska</option><option value="39" title="Nevada">Nevada</option><option value="40" title="New Hampshire">New Hampshire</option><option value="41" title="New Jersey">New Jersey</option><option value="42" title="New Mexico">New Mexico</option><option value="43" title="New York">New York</option><option value="44" title="North Carolina">North Carolina</option><option value="45" title="North Dakota">North Dakota</option><option value="46" title="Northern Mariana Islands">Northern Mariana Islands</option><option value="47" title="Ohio">Ohio</option><option value="48" title="Oklahoma">Oklahoma</option><option value="49" title="Oregon">Oregon</option><option value="50" title="Palau">Palau</option><option value="51" title="Pennsylvania">Pennsylvania</option><option value="52" title="Puerto Rico">Puerto Rico</option><option value="53" title="Rhode Island">Rhode Island</option><option value="54" title="South Carolina">South Carolina</option><option value="55" title="South Dakota">South Dakota</option><option value="56" title="Tennessee">Tennessee</option><option value="57" title="Texas">Texas</option><option value="58" title="Utah">Utah</option><option value="59" title="Vermont">Vermont</option><option value="60" title="Virgin Islands">Virgin Islands</option><option value="61" title="Virginia">Virginia</option><option value="62" title="Washington">Washington</option><option value="63" title="West Virginia">West Virginia</option><option value="64" title="Wisconsin">Wisconsin</option><option value="65" title="Wyoming">Wyoming</option></select>
+                                                <script type="text/javascript">
+                                                    //<![CDATA[
+                                                    $('billing:region_id').setAttribute('defaultValue',  "");
+                                                    //]]>
+                                                </script>
+                                                <input type="text" id="billing:region" name="billing[region]" value="" title="State/Province" class="input-text required-entry" style="display: none;">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="fields" style="">
+                                        <div class="field" style="">
+                                            <label for="billing:postcode" class="required"><em>*</em>Zip/Postal Code</label>
+                                            <div class="input-box">
+                                                <input type="text" title="Zip/Postal Code" name="billing[postcode]" id="billing:postcode" value="" class="input-text validate-zip-international required-entry">
+                                            </div>
+                                        </div>
+                                        <div class="check-align1" style="">
+                                            <label for="billing:country_id" class="required"><em>*</em>Country</label>
+                                            <div class="input-box">
+                                                <select name="billing[country_id]" id="billing:country_id" class="validate-select" title="Country"><option value=""> </option><option value="AF">Afghanistan</option><option value="AX">Åland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BV">Bouvet Island</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos [Keeling] Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo - Brazzaville</option><option value="CD">Congo - Kinshasa</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="CI">Côte d’Ivoire</option><option value="HR">Croatia</option><option value="CU">Cuba</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and McDonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong SAR China</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macau SAR China</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar [Burma]</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="AN">Netherlands Antilles</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="MP">Northern Mariana Islands</option><option value="KP">North Korea</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territories</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn Islands</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Réunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="BL">Saint Barthélemy</option><option value="SH">Saint Helena</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="MF">Saint Martin</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and the Grenadines</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">São Tomé and Príncipe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia and the South Sandwich Islands</option><option value="KR">South Korea</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option value="US" selected="selected">United States</option><option value="UY">Uruguay</option><option value="UM">U.S. Minor Outlying Islands</option><option value="VI">U.S. Virgin Islands</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican City</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis and Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option></select>                        </div>
+                                        </div>
+                                    </li>
+                                    <li class="fields" style="">
+                                        <div class="field">
+                                            <label for="billing:telephone" class="required"><em>*</em>Telephone</label>
+                                            <div class="input-box">
+                                                <input type="text" name="billing[telephone]" value="" title="Telephone" class="input-text required-entry" id="billing:telephone" onkeyup="billing.save()">
+                                            </div>
+                                        </div>
+                                        <div class="check-align1">
+                                            <label for="billing:fax">Fax</label>
+                                            <div class="input-box">
+                                                <input type="text" name="billing[fax]" value="" title="Fax" class="input-text" id="billing:fax">
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                    <div class="input-box">
+                                        <input id="id_create_account" type="checkbox" value="1" name="create_account">
+                                        <label for="id_create_account" style="width: 177px; margin-left: 19px; margin-top: -15px;">Create an account for later use</label>
+                                    </div>
+                                   
+                                    <li class="fields" id="register-customer-password">
+                                        <div class="field">
+                                            <label for="billing:customer_password" class="required"><em>*</em>Password</label>
+                                            <div class="input-box">
+                                                <input type="password" name="billing[customer_password]" id="billing:customer_password" title="Password" class="input-text required-entry validate-password">
+                                            </div>
+                                        </div>
+                                        <div class="field" style="margin-left: 141px; width: 120px; margin-top: -43px;">
+                                            <label for="billing:confirm_password" class="required"><em>*</em>Confirm Password</label>
+                                            <div class="input-box">
+                                                <input type="password" name="billing[confirm_password]" title="Confirm Password" id="billing:confirm_password" class="input-text required-entry validate-cpassword" onkeyup="billing.save()">
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+                                    <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1"></li>
+                                </ul>
+                            </fieldset>
+                        </li>
+                        
+                    </ul>
+                    <div class="" id="billing-buttons-container">
+                  
+
+                        <span class="please-wait" id="billing-please-wait" >
+                            <img src="http://demo.mage-extensions-themes.com/quick-one-page-checkout/skin/frontend/default/f001/images/opc-ajax-loader.gif" alt="Loading next step..." title="Loading next step..." class="v-middle"> Loading next step...        </span>
+                    </div>
+                </fieldset>
+            </form>
+            <script type="text/javascript">
+                //<![CDATA[
+                var billing = new Billing('co-billing-form', 'http://demo.mage-extensions-themes.com/quick-one-page-checkout/checkout/onepage/getAddress/address/', 'http://demo.mage-extensions-themes.com/quick-one-page-checkout/checkout/onepage/saveBilling/');
+                var billingForm = new VarienForm('co-billing-form');
+
+                //billingForm.setElementsRelation('billing:country_id', 'billing:region', 'http://demo.mage-extensions-themes.com/quick-one-page-checkout/directory/json/childRegion/', 'Select State/Province...');
+                $('billing-address-select') && billing.newAddress(!$('billing-address-select').value);
+
+                var billingRegionUpdater = new RegionUpdater('billing:country_id', 'billing:region', 'billing:region_id', countryRegions);
+                
+            </script>
+        </div>
+    </li>
+    <li id="opc-shipping" class="section  ">
+        <div class="">
+            <span class="number">3</span>
+            <h2>Shipping Information</h2
+
+        </div>
+        <div id="checkout-step-shipping" class="step a-item">
+
+            
+            <form id="co-shipping-form" action="">                
+                <label for="shipping:To">Ship To <em style="color:#FF0000">*</em>: &nbsp; &nbsp;</label>
+                <select name="myList" id="myList" onchange="changeShipping()" style="width: 261px;">
+                    <option value=" ">Select</option>
+                    <option value="billing">Same as Billing Address</option>
+                    <option value="new">New Shipping Address</option>
+                </select>
+                <br><br>
+
+                <div id="showshipping" style="display: block;">
+                    <fieldset class="group-select" id="shipping-new-address-form">
+                        <input type="hidden" name="shipping[address_id]" value="" id="shipping:address_id">
+                        <ul class="qocadvanced-form">
+                            <li class="fields"><div class="customer-name">
+                                    <div class="field name-firstname">
+                                        <label for="shipping:firstname" class="required"><em>*</em>First Name</label>
+                                        <div class="input-box">
+                                            <input type="text" style="margin-left: 2px;" id="shipping:firstname" name="shipping[firstname]" value="" title="First Name" maxlength="255" class="input-text required-entry validation-passed" onchange="shipping.setSameAsBilling(false)">
+                                        </div>
+                                    </div>
+                                    <div class="field name-lastname" style="width: 120px; margin-left: 145px; margin-top: -41px;">
+                                        <label for="shipping:lastname" class="required"><em>*</em>Last Name</label>
+                                        <div class="input-box">
+                                            <input type="text" style="margin-left: 0px;" id="shipping:lastname" name="shipping[lastname]" value="" title="Last Name" maxlength="255" class="input-text required-entry validation-passed" onchange="shipping.setSameAsBilling(false)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="fields"><div class="fields">
+                                    <label for="shipping:company">Company</label><br>
+                                    <input type="text" id="shipping:company" name="shipping[company]" value="" title="Company" class="input-text validation-passed" onchange="shipping.setSameAsBilling(false);" style="width:264px;"></div>
+                            </li>
+                            <li class="wide"><label for="shipping:street1" class="required">Address <em>*</em></label><br>
+                                <input type="text" title="Street Address" name="shipping[street][]" id="shipping:street1" value="" class="required-entry input-text validation-passed" onchange="shipping.setSameAsBilling(false);" style="width: 264px;"></li>
+                            <li class="wide"><input type="text" title="Street Address 2" name="shipping[street][]" id="shipping:street2" value="" class="input-text validation-passed" onchange="shipping.setSameAsBilling(false);" style="width: 264px;"></li>
+                            <li class="fields">
+
+                                <div class="" style="width:120px;">
+                                    <label for="shipping:postcode" class="required">Zip/Postal Code <em>*</em></label><br>
+                                    <input type="text" title="Zip/Postal Code" name="shipping[postcode]" id="shipping:postcode" value="" class="validate-zip-international required-entry input-text validation-passed" onchange="shipping.setSameAsBilling(false);" style="width:120px;"></div>
+                                <div class="check-align8">
+                                    <label for="shipping:city" class="required">City <em>*</em></label><br>
+                                    <input type="text" title="City" name="shipping[city]" value="" class="required-entry input-text validation-passed" id="shipping:city" onchange="shipping.setSameAsBilling(false);">
+                                </div>
+
+
+                            </li>
+
+                            <li class="fields">
+                                <div class="" style="width:120px;">
+                                    <label for="shipping:region_id" class="required">State/Province <em>*</em></label><br>
+                                    <select id="shipping:region_id" name="shipping[region_id]" title="State/Province" style="width:120px;" defaultvalue="">
+                                        <option value="">Please select region, state or province</option>
+                                        <option value="1" title="Alabama">Alabama</option><option value="2" title="Alaska">Alaska</option><option value="3" title="American Samoa">American Samoa</option><option value="4" title="Arizona">Arizona</option><option value="5" title="Arkansas">Arkansas</option><option value="6" title="Armed Forces Africa">Armed Forces Africa</option><option value="7" title="Armed Forces Americas">Armed Forces Americas</option><option value="8" title="Armed Forces Canada">Armed Forces Canada</option><option value="9" title="Armed Forces Europe">Armed Forces Europe</option><option value="10" title="Armed Forces Middle East">Armed Forces Middle East</option><option value="11" title="Armed Forces Pacific">Armed Forces Pacific</option><option value="12" title="California">California</option><option value="13" title="Colorado">Colorado</option><option value="14" title="Connecticut">Connecticut</option><option value="15" title="Delaware">Delaware</option><option value="16" title="District of Columbia">District of Columbia</option><option value="17" title="Federated States Of Micronesia">Federated States Of Micronesia</option><option value="18" title="Florida">Florida</option><option value="19" title="Georgia">Georgia</option><option value="20" title="Guam">Guam</option><option value="21" title="Hawaii">Hawaii</option><option value="22" title="Idaho">Idaho</option><option value="23" title="Illinois">Illinois</option><option value="24" title="Indiana">Indiana</option><option value="25" title="Iowa">Iowa</option><option value="26" title="Kansas">Kansas</option><option value="27" title="Kentucky">Kentucky</option><option value="28" title="Louisiana">Louisiana</option><option value="29" title="Maine">Maine</option><option value="30" title="Marshall Islands">Marshall Islands</option><option value="31" title="Maryland">Maryland</option><option value="32" title="Massachusetts">Massachusetts</option><option value="33" title="Michigan">Michigan</option><option value="34" title="Minnesota">Minnesota</option><option value="35" title="Mississippi">Mississippi</option><option value="36" title="Missouri">Missouri</option><option value="37" title="Montana">Montana</option><option value="38" title="Nebraska">Nebraska</option><option value="39" title="Nevada">Nevada</option><option value="40" title="New Hampshire">New Hampshire</option><option value="41" title="New Jersey">New Jersey</option><option value="42" title="New Mexico">New Mexico</option><option value="43" title="New York">New York</option><option value="44" title="North Carolina">North Carolina</option><option value="45" title="North Dakota">North Dakota</option><option value="46" title="Northern Mariana Islands">Northern Mariana Islands</option><option value="47" title="Ohio">Ohio</option><option value="48" title="Oklahoma">Oklahoma</option><option value="49" title="Oregon">Oregon</option><option value="50" title="Palau">Palau</option><option value="51" title="Pennsylvania">Pennsylvania</option><option value="52" title="Puerto Rico">Puerto Rico</option><option value="53" title="Rhode Island">Rhode Island</option><option value="54" title="South Carolina">South Carolina</option><option value="55" title="South Dakota">South Dakota</option><option value="56" title="Tennessee">Tennessee</option><option value="57" title="Texas">Texas</option><option value="58" title="Utah">Utah</option><option value="59" title="Vermont">Vermont</option><option value="60" title="Virgin Islands">Virgin Islands</option><option value="61" title="Virginia">Virginia</option><option value="62" title="Washington">Washington</option><option value="63" title="West Virginia">West Virginia</option><option value="64" title="Wisconsin">Wisconsin</option><option value="65" title="Wyoming">Wyoming</option></select>
+
+                                    <script type="text/javascript">
+                                        $('shipping:region_id').setAttribute('defaultValue',  "");
+                                    </script>
+
+                                    <input type="text" id="shipping:region" name="shipping[region]" value="" title="State/Province" class="required-entry validation-passed" style="display: none;"></div>
+
+                                <div class="check-align8">
+                                    <label for="shipping:country_id" class="required">Country <em>*</em></label><br>
+                                    <select name="shipping[country_id]" id="shipping:country_id" class="validate-select validation-passed" title="Country" onchange="if(window.shipping)shipping.setSameAsBilling(false);"><option value=""> </option><option value="AF">Afghanistan</option><option value="AX">Åland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BV">Bouvet Island</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos [Keeling] Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo - Brazzaville</option><option value="CD">Congo - Kinshasa</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="CI">Côte d’Ivoire</option><option value="HR">Croatia</option><option value="CU">Cuba</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and McDonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong SAR China</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macau SAR China</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar [Burma]</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="AN">Netherlands Antilles</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="MP">Northern Mariana Islands</option><option value="KP">North Korea</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territories</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn Islands</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Réunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="BL">Saint Barthélemy</option><option value="SH">Saint Helena</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="MF">Saint Martin</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and the Grenadines</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">São Tomé and Príncipe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia and the South Sandwich Islands</option><option value="KR">South Korea</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option value="US" selected="selected">United States</option><option value="UY">Uruguay</option><option value="UM">U.S. Minor Outlying Islands</option><option value="VI">U.S. Virgin Islands</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican City</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis and Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option></select>            </div>
+
+                            </li>
+
+                            <li class="fields">
+
+                                <div class="" style="width:120px;">
+                                    <label for="shipping:fax">Fax</label><br>
+                                    <input type="text" name="shipping[fax]" value="" title="Fax" class="input-text validation-passed" id="shipping:fax" onchange="shipping.setSameAsBilling(false);" style="width:120px;"></div>
+                                <div class="check-align8">
+                                    <label for="shipping:telephone" class="required">Telephone<em>*</em> </label><br>
+                                    <input type="text" name="shipping[telephone]" value="" title="Telephone" class="required-entry input-text validation-passed" id="shipping:telephone" onclick="loadnextstep();" style="width:120px;"></div>
+
+                            </li>
+
+                            <li class="no-display"><input type="hidden" name="shipping[save_in_address_book]" value="1"></li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <p class="no-display"><input type="checkbox" name="shipping[same_as_billing]" id="shipping:same_as_billing" value="1" onclick="shipping.setSameAsBilling(this.checked)"> &nbsp;<label for="shipping:same_as_billing">Use Billing Address</label></p>
+            </form>
+            <div>
+                <p class="required">* Required Fields</p>
+                <div id="shipping-buttons-container" style="">
+                    <!--  <a href="#" class="back left" onclick="checkout.back(); return false;">Back</a> -->
+                     <!--<button type="button" class="form-button right" onclick="shipping.save()"><span>Continue</span></button>-->
+                    <span id="shipping-please-wait" style="display: none;" class="please-wait">
+                        <img src="http://demo.mage-extensions-themes.com/quick-one-page-checkout/skin/frontend/default/f001/images/opc-ajax-loader.gif" class="v-middle" alt=""> &nbsp; Loading next step... &nbsp;
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </li>
+</ol>

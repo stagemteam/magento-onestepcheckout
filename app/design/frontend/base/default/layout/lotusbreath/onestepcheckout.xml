@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout version="0.0.1">
+    <lotusbreath_onestepcheckout_index_index>
+        <label>One Step Checkout</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addCss"><stylesheet>lotusbreath/onestepcheckout/css/onestepcheckout.css</stylesheet></action>
+            <action method="addCss" ifconfig="lotusbreath_onestepcheckout/compatibility/is_load_gumby" ><stylesheet>lotusbreath/onestepcheckout/css/gumby_grid.css</stylesheet></action>
+            <action method="addCss"><stylesheet>lotusbreath/onestepcheckout/css/magnific-popup/magnific-popup.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+                <block type="lotusbreath_onestepcheckout/onepage" name="checkout.onepage" as="checkout.onepage">
+                    <action method="setTemplate">
+                        <template helper="lotusbreath_onestepcheckout/layout/switchTemplate"></template>
+                    </action>
+                    <block type="lotusbreath_onestepcheckout/onepage_js" name="checkout.onepage.jsconfig" as="jsconfig" template="lotusbreath/onestepcheckout/onepage/jsconfig.phtml"></block>
+                    <block type="lotusbreath_onestepcheckout/onepage_login" name="onestepcheckout.login" as="login"  />
+                    <block type="lotusbreath_onestepcheckout/onepage_billing" name="checkout.onepage.billing" as="billing" template="lotusbreath/onestepcheckout/onepage/billing.phtml"/>
+                    <block type="lotusbreath_onestepcheckout/onepage_shipping" name="checkout.onepage.shipping" as="shipping" template="lotusbreath/onestepcheckout/onepage/shipping.phtml"/>
+                    <block type="lotusbreath_onestepcheckout/onepage_shipping_method" name="checkout.onepage.shipping_method" as="shipping_method" template="lotusbreath/onestepcheckout/onepage/shipping_method.phtml">
+                        <block type="lotusbreath_onestepcheckout/onepage_shipping_method_available" name="checkout.onepage.shipping_method.available" as="available" template="lotusbreath/onestepcheckout/onepage/shipping_method/available.phtml"/>
+                        <block type="checkout/onepage_shipping_method_additional" name="checkout.onepage.shipping_method.additional" as="additional" template="lotusbreath/onestepcheckout/onepage/shipping_method/additional.phtml"/>
+                    </block>
+                    <!-- payment -->
+                    <block type="lotusbreath_onestepcheckout/onepage_payment" name="checkout.onepage.payment" as="payment" template="lotusbreath/onestepcheckout/onepage/payment.phtml">
+                        <block type="checkout/onepage_payment_methods" name="checkout.payment.methods" as="methods" template="lotusbreath/onestepcheckout/onepage/payment/methods.phtml">
+                            <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+                        </block>
+                    </block>
+                    <!-- review -->
+                    <block type="lotusbreath_onestepcheckout/onepage_review" name="checkout.onepage.review" as="review" template="lotusbreath/onestepcheckout/onepage/review.phtml">
+                        <block type="checkout/onepage_review_info" name="info" template="lotusbreath/onestepcheckout/onepage/review/info.phtml">
+                            <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>lotusbreath/onestepcheckout/onepage/review/item.phtml</template></action>
+                            <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>lotusbreath/onestepcheckout/onepage/review/item.phtml</template></action>
+                            <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>lotusbreath/onestepcheckout/onepage/review/item.phtml</template></action>
+                            <block type="checkout/cart_totals" name="checkout.onepage.review.info.totals" as="totals" template="lotusbreath/onestepcheckout/onepage/review/totals.phtml">
+                                <block type="lotusbreath_onestepcheckout/checkout_agreements" name="checkout.onepage.agreements" as="agreements" template="lotusbreath/onestepcheckout/onepage/agreements.phtml"/>
+                            </block>
+                            <block type="core/text_list" name="checkout.onepage.review.info.items.before" as="items_before" translate="label">
+                                <label>Items Before</label>
+                            </block>
+                            <block type="core/text_list" name="checkout.onepage.review.info.items.after" as="items_after" translate="label">
+                                <label>Items After</label>
+                            </block>
+                            <block type="core/template" name="checkout.onepage.review.button" as="button" template="lotusbreath/onestepcheckout/onepage/review/button.phtml"/>
+                        </block>
+                    </block>
+                    <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="lotusbreath/onestepcheckout/onepage/coupon.phtml"/>
+                    <block type="lotusbreath_onestepcheckout/checkout_agreements" name="checkout.onepage.agreements" as="agreements" template="lotusbreath/onestepcheckout/onepage/agreements.phtml"/>
+                    <block type="core/template" name="checkout.onepage.loginform" as="loginform" template="lotusbreath/onestepcheckout/onepage/loginform.phtml"></block>
+                </block>
+            </reference>
+    </lotusbreath_onestepcheckout_index_index>
+
+</layout>

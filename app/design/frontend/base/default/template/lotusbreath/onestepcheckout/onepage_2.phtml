@@ -1,0 +1,85 @@
+<div class="opc lt-checkoutpage" id="checkoutSteps">
+    <?php echo $this->getChildHtml("loginform");?>
+    <form id="checkout_form" name="checkout_form">
+
+        <div class="step">
+            <?php if ($pageTitle = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/pagetitle')):?>
+            <h2 class="page-title"><?php echo $pageTitle;?></h2>
+            <?php endif;?>
+            <?php if ($pageDescription = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/pagedescription')):?>
+                <p class="page-description"><?php echo $pageDescription;?></p>
+            <?php endif;?>
+            <?php if (!Mage::helper('customer')->isLoggedIn()) : ?>
+                <p><?php echo $this->__("Already registered? Please");?> <a href="#" id="loginFrmDlgO"> <?php echo $this->__("log in");?> </a></p>
+            <?php endif; ?>
+            <div class="col2-set">
+                <div class="col-1 col-left">
+                    <h3 class="ptitle">1. <?php echo $this->__("Billing Information"); ?></h3>
+                    <?php echo $this->getChildHtml('billing'); ?>
+                    <div id="shipping-area" style="display: none;">
+                        <h3 class="ptitle"><?php echo $this->__("Shipping Information");?></h3>
+                        <?php
+                        echo $this->getChildHtml('shipping'); ?>
+                    </div>
+                </div>
+                <div class="col-2 col-left">
+                    <h3 class="ptitle">2. <?php echo $this->__("Shipping Method"); ?></h3>
+                    <div id="shipping_partial">
+                        <?php echo $this->getChildHtml('shipping_method'); ?>
+                    </div>
+                    <h3 class="ptitle">3. <?php echo $this->__("Payment Method");?></h3>
+                    <div id="payment_partial">
+                        <?php echo $this->getChildHtml('payment'); ?>
+                    </div>
+                    <div class="col-3">
+                        <h3 class="ptitle">4. <?php echo $this->__("Review Order"); ?></h3>
+
+                        <div id="review_partial">
+                            <?php echo $this->getData("reviewHtml"); ?>
+                            <?php echo $this->getChildHtml('review'); ?>
+                        </div>
+                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowgiftmessage') ):?>
+                        <?php if (!$this->getQuote()->isVirtual()): ?>
+                            <?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
+                        <?php endif; ?>
+                        <?php endif;?>
+                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowcoupon') ):?>
+                        <h3><?php echo $this->__("Discount Codes");?></h3>
+                        <div id="coupon_patial">
+                            <?php echo $this->getChildHtml('coupon'); ?>
+                        </div>
+                        <?php endif;?>
+                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowcomment') ):?>
+                        <div id="comment-patial">
+                            <h3><?php echo $this->__("Comment");?></h3>
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <div class="input-box">
+                                        <textarea name="order_comment" placeholder="<?php echo $this->__("Type comment here");?>" class="input-text"></textarea>
+                                    </div>
+                                </li>
+                             </ul>
+                        </div>
+                        <?php endif;?>
+                        <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowsubscribe')):?>
+                        <p class="newsletter">
+                            <input type="checkbox" id="newsletter-signup" name="newsletter" value="1" title="<?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>" class="checkbox" />
+                            <label for="newsletter-signup">
+                                <?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>
+                            </label>
+                        </p>
+                        <?php endif;?>
+                        <?php echo $this->getChildHtml('agreements') ?>
+                        <div id="saveOder-error" class="error"></div>
+                        <button role='review-save' type="submit"
+                                title="<?php echo Mage::helper('checkout')->__('Place Order') ?>" name="submitbtn"
+                                id="onepage-place-order-btn" class="button btn-checkout">
+                            <span><span><?php echo Mage::helper('checkout')->__('Place Order') ?></span></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

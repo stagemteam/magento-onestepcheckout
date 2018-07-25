@@ -1,0 +1,76 @@
+<?php if (!Mage::helper('customer')->isLoggedIn()) : ?>
+    <form class="white-popup mfp-hide" id="loginFrm"
+          action="<?php echo $this->getUrl('onestepcheckout/account/login') ?>" method="POST"
+        >
+        <h3><?php echo $this->__("Login"); ?></h3>
+
+        <p class="mage-error" id="loginFrmErrMsg"></p>
+
+        <p class="mage-success success" id="loginFrmSuccessMsg"></p>
+        <fieldset>
+            <ul class="form-list" style="">
+                <li class="fields">
+                    <div class="input-box">
+                        <label for="login-email"><?php echo $this->__("Email"); ?><em>*</em></label>
+                        <input type="text" class="input-text required-entry validate-email" id="login-email"
+                               name="login[username]" value="">
+                    </div>
+                </li>
+                <li class="fields">
+                    <div class="input-box">
+                        <label for="login-password"><?php echo $this->__("Password"); ?><em>*</em></label>
+                        <input type="password" class="input-text required-entry" id="login-password"
+                               name="login[password]">
+                    </div>
+                </li>
+            </ul>
+            <div class="buttons-set">
+                <p>
+                    <a id="loginFrmForgotLink" href="<?php echo Mage::getUrl("customer/account/forgotpassword/"); ?>"
+                       class="f-left">
+                        <?php echo $this->__("Forgot your password?"); ?></a>
+                </p>
+                <button type="submit" class="button"><span><span>Login</span></span></button>
+            </div>
+        </fieldset>
+    </form>
+
+    <form class="white-popup mfp-hide form-popup" id="forgotFrm"
+          action="<?php echo $this->getUrl('onestepcheckout/account/forgotpasswordpost') ?>" method="post">
+
+        <h3 class="legend"><?php echo $this->__('Retrieve your password here') ?></h3>
+
+        <p class="mage-error" id="forgotFrmErrMsg"></p>
+
+        <p class="mage-success success" id="forgotFrmSuccessMsg"></p>
+
+        <p><?php echo $this->__('Please enter your email address below. You will receive a link to reset your password.') ?></p>
+        <fieldset>
+            <ul class="form-list">
+                <li>
+                    <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?>
+                    </label>
+
+                    <div class="input-box">
+                        <input type="text" name="email" alt="email" id="email_address"
+                               class="input-text required-entry validate-email"
+                               value="<?php echo $this->escapeHtml($this->getEmailValue()) ?>"/>
+                    </div>
+                </li>
+                <?php echo $this->getChildHtml('form.additional.info'); ?>
+            </ul>
+            <div class="buttons-set">
+
+                <p class="back-link ">
+                    <a class="login_link" id="forgotBackLoginLink"
+                       href="<?php echo $this->helper('customer')->getLoginUrl() ?>">
+                        <small>&laquo; </small><?php echo $this->__('Back to Login') ?></a>
+                </p>
+                <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button">
+                    <span><span><?php echo $this->__('Submit') ?></span></span></button>
+            </div>
+        </fieldset>
+
+    </form>
+
+<?php endif; ?>

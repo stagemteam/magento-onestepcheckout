@@ -1,0 +1,166 @@
+<?php
+/*
+Lotus Breath - One Step Checkout
+Copyright (C) 2014  Lotus Breath
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+?>
+<!-- confirm dialog templates -->
+<div id="confirm_dialog" class="white-popup mfp-hide">
+    <p class="content"></p>
+
+    <div class="button-set">
+        <button type="button" class="button btn_ok">
+            <span><span class="btn_text"><?php echo $this->__('Ok'); ?></span></span>
+        </button>
+        <button type="button" class="button btn_cancel">
+            <span><span class="btn_text"><?php echo $this->__('Cancel'); ?></span></span>
+        </button>
+    </div>
+</div>
+<!-- END : confirm dialog templates -->
+<?php if (Mage::getStoreConfigFlag('lotusbreath_onestepcheckout/compatibility/is_load_jquery')) : ?>
+    <script type="text/javascript"
+            src="<?php echo $this->getSkinUrl("lotusbreath/onestepcheckout/js/lib//jquery/jquery.min.js"); ?>"></script>
+    <script type="text/javascript">jQuery.noConflict();</script>
+<?php endif; ?>
+<?php if (Mage::getStoreConfigFlag('lotusbreath_onestepcheckout/compatibility/is_load_jqueryui')) : ?>
+    <script type="text/javascript"
+            src="<?php echo $this->getSkinUrl("lotusbreath/onestepcheckout/js/lib/jquery/jquery-ui.js"); ?>"></script>
+<?php endif; ?>
+
+<?php
+//
+//'onestepcheckout/jquery/jquery-ui.js'
+//lotusbreath_onestepcheckout/compatibility/is_load_jquery
+//lotusbreath_onestepcheckout/compatibility/is_load_jqueryui
+$jsScripts = array(
+    //'onestepcheckout/jquery/jquery-ui.js',
+    'lotusbreath/onestepcheckout/js/lib/jquery/handlebars.js',
+    'lotusbreath/onestepcheckout/js/lib/jquery/jquery.tmpl.min.js',
+    'lotusbreath/onestepcheckout/js/lib/jquery/jquery.metadata.js',
+    'lotusbreath/onestepcheckout/js/mage/translate.js',
+    'lotusbreath/onestepcheckout/js/lib/jquery/jquery.validate.js',
+    'lotusbreath/onestepcheckout/js/mage/validation.js',
+    'lotusbreath/onestepcheckout/js/mage/validation/validation.js',
+    'lotusbreath/onestepcheckout/js/mage/validation/cc-type.js',
+    'lotusbreath/onestepcheckout/js/mage/validation/dob-rule.js',
+    'lotusbreath/onestepcheckout/js/lib/jquery/spin.min.js',
+    'lotusbreath/onestepcheckout/js/lib/jquery/magnific-popup/jquery.magnific-popup.min.js',
+    'lotusbreath/onestepcheckout/js/lib/jquery/jquery.blockUI.js',
+    'lotusbreath/onestepcheckout/js/util.js',
+    'lotusbreath/onestepcheckout/js/observer.js',
+    'lotusbreath/onestepcheckout/js/osc.js',
+    'lotusbreath/onestepcheckout/js/billing.js',
+    'lotusbreath/onestepcheckout/js/shipping.js',
+    'lotusbreath/onestepcheckout/js/shipping_method.js',
+    'lotusbreath/onestepcheckout/js/payment.js',
+    'lotusbreath/onestepcheckout/js/review.js',
+    'lotusbreath/onestepcheckout/js/login.js',
+    'lotusbreath/onestepcheckout/js/coupon.js',
+    'lotusbreath/onestepcheckout/js/region-updater.js'
+
+);
+foreach ($jsScripts as $script):
+    ?>
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl($script);?>"></script>
+<?php endforeach; ?>
+<?php echo $this->helper('lotusbreath_onestepcheckout/js')->getTranslatorScript() ?>
+<script type="text/javascript">
+    //<![CDATA[
+    var lotusOSC;
+    window.addEventListener('load', function () {
+        (function ($, window) {
+            lotusOSC = $("#checkoutSteps").onestepcheckout(
+                {
+                    autoDetectLocation: '<?php echo Mage::getStoreConfigFlag('lotusbreath_onestepcheckout/general/autodetectlocation');?>',
+                    autoDetectUrl: '<?php echo Mage::helper('lotusbreath_onestepcheckout')->getGeoIpUrl();?>',
+                    submitUrl: '<?php echo Mage::helper('lotusbreath_onestepcheckout')->getSubmitUrl();?>',
+                    saveStepUrl: '<?php echo Mage::helper('lotusbreath_onestepcheckout')->getSaveStepUrl();?>',
+
+                    review: {
+                        saveUrl: '<?php echo $this->getUrl('onestepcheckout/index/savePost', array('_secure' => true)) ?>',
+                        successUrl: '<?php echo $this->getUrl('checkout/onepage/success', array('_secure' => true)) ?>',
+                        updateCarUrl: '<?php echo $this->getUrl('onestepcheckout/index/updateCart', array('_secure' => true)) ?>',
+                        clearCartItemUrl: '<?php echo $this->getUrl('onestepcheckout/index/clearCartItem', array('_secure' => true)) ?>',
+                        corfirmRemoveCartItemMsg: '<?php echo $this->__('Are you sure you would like to remove this item from the shopping cart?');?>'
+                    },
+                    coupon: {
+                        applyCouponUrl: '<?php echo $this->getUrl('onestepcheckout/index/applyCoupon', array('_secure' => true)) ?>',
+                    },
+                    termErrorMsg: '<?php echo $this->__('Please accept terms and conditions')?>',
+                    billing: {
+                        checkExistsUrl: '<?php echo $this->getUrl('onestepcheckout/index/checkExistsEmail', array('_secure' => true)) ?>',
+                        checkExistsMsg: '<?php echo $this->__('There is already a customer registered using this email address. Please login using this email address or enter a different email address to register your account.');?>',
+                        'alwaysUseShippingAsBilling': '<?php echo Mage::getStoreConfig('lotusbreath_onestepcheckout/shippingaddress/alwaysusesameasbilling');?>'
+                    },
+                    login: {
+                        loginUrl: '<?php echo $this->getUrl('onestepcheckout/index/login', array('_secure' => true)) ?>'
+                    },
+                    confirmCheckEmail: {
+                        login_btn_text: '<?php echo $this->__("Login Now");?>',
+                        cancel_btn_text: '<?php echo $this->__("Change your email");?>',
+                    },
+                    checkoutProcess: {
+                        shipping_method: {
+                            loading_payment: '<?php echo Mage::getStoreConfigFlag('lotusbreath_onestepcheckout/checkout_process/shipping_method_is_loading_payment');?>'
+                        },
+                        'payment': {
+                            loading_shipping_method: '<?php echo Mage::getStoreConfigFlag('lotusbreath_onestepcheckout/checkout_process/shipping_method_is_loading_payment');?>',
+                        }
+                    }
+                }
+            );
+        })(jQuery, window);
+    }, false);
+
+    regionUpdate = function () {
+        (function ($) {
+
+            $('#billing\\:country_id').regionUpdater({
+                defaultRegion: "<?php echo $this->getBillingAddress()->getRegionId() ?>",
+                optionalRegionAllowed: <?php echo (Mage::getStoreConfig('general/region/display_all')? 'true' : 'false'); ?>,
+                countriesWithOptionalZip: <?php echo $this->helper('directory')->getCountriesWithOptionalZip(true) ?>,
+                regionListId: '#billing\\:region_id',
+                regionInputId: '#billing\\:region',
+                postcodeId: '#billing\\:postcode',
+                regionJson: <?php echo Mage::helper('directory')->getRegionJson() ?>,
+                countriesWithOptionalZip: <?php  echo $this->helper('directory')->getCountriesWithOptionalZip(true) ?>,
+                clearError: function () {
+                    var selectorArr = ['#billing\\:region_id', '#billing\\:region', '#billing\\:postcode'];
+                    for (var i = 0; i < selectorArr.length; i++) {
+                        $(selectorArr[i]).removeClass('validation-failed').next("div.validation-advice").remove();
+                    }
+                }
+            });
+            $('#shipping\\:country_id').regionUpdater({
+                optionalRegionAllowed: <?php echo (Mage::getStoreConfig('general/region/display_all')? 'true' : 'false'); ?>,
+                regionListId: '#shipping\\:region_id',
+                regionInputId: '#shipping\\:region',
+                postcodeId: '#shipping\\:postcode',
+                regionJson: <?php echo Mage::helper('directory')->getRegionJson() ?>,
+                defaultRegion: "<?php echo $this->getShippingAddress()->getRegionId() ?>",
+                countriesWithOptionalZip: <?php echo $this->helper('directory')->getCountriesWithOptionalZip(true) ?>,
+                clearError: function () {
+                    var selectorArr = ['#shipping\\:region_id', '#shipping\\:region', '#shipping\\:postcode'];
+                    for (var i = 0; i < selectorArr.length; i++) {
+                        $(selectorArr[i]).removeClass('validation-failed').next("div.validation-advice").remove();
+                    }
+                }
+            });
+        })(jQuery);
+    }
+    window.addEventListener('load', regionUpdate, false);
+    //]]>
+</script>

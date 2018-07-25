@@ -1,0 +1,96 @@
+<?php
+$isNewsletter = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowsubscribe');
+if ($isNewsletter) {
+    if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+        $subscriber = Mage::getModel('newsletter/subscriber')->loadByEmail(
+            Mage::getSingleton('customer/session')->getCustomer()->getEmail());
+        if ($subscriber && $subscriber->getId()) {
+            $isNewsletter = false;
+        }
+    }
+}
+?>
+<?php if ($this->getTotals()): ?>
+    <tfoot>
+    <?php $_colspan = $this->helper('tax')->displayCartBothPrices() ? 5 : 3; ?>
+    <?php echo $this->renderTotals(null, $_colspan); ?>
+    <!--<tr>
+        <td class="a-right" colspan="4" style="height: 10px;"></td>
+    </tr>
+    !-->
+    <?php echo $this->renderTotals('footer', $_colspan); ?>
+    <!--<?php if ($this->needDisplayBaseGrandtotal()): ?>-->
+        <!--<tr>
+            <td class="a-right" colspan="<?php //echo $_colspan; ?>">
+                <small><?php echo $this->helper('sales')->__('Your credit card will be charged for') ?></small>
+            </td>
+            <td class="a-right">
+                <small><?php //echo $this->displayBaseGrandtotal() ?></small>
+            </td>
+        </tr>-->
+    <!--<?php endif ?>-->
+    <tr>
+        <td class="a-right" colspan="<?php echo $_colspan + 1; ?>">
+            <div class="row edit-cart-review">
+                <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/revieworder/show_link_cart')): ?>
+                    <div class="forgot-link">
+                    <span> <?php echo $this->__('Forgot an Item?') ?> <a
+                            href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('Edit Your Cart') ?>
+                        </a>
+                    </span>
+                    </div>
+                <?php endif; ?>
+                <?php
+                $canEditCart = Mage::getStoreConfig('lotusbreath_onestepcheckout/revieworder/can_edit_cart');
+                ?>
+                <?php if ($canEditCart): ?>
+                    <div class="lt-buttons-set right" id="review-buttons-container">
+                        <button type="button" name="edit_cart_action" id="edit_cart_action"
+                                value="update_qty" title="<?php echo $this->__('Edit Your Cart') ?>"
+                                class="button btn-update">
+                            <span><span><?php echo $this->__('Edit Your Cart') ?></span></span></button>
+                        <button type="button" name="edit_cart_action" id="update_cart_action"
+                                value="update_qty" title="<?php echo $this->__('Update') ?>" class="button btn-update"
+                                style="display: none;">
+                            <span><span><?php echo $this->__('Update') ?></span></span></button>
+                        <button type="button" name="edit_cart_action" id="cancel_cart_action"
+                                value="update_qty" title="<?php echo $this->__('Cancel') ?>" class="button btn-close"
+                                style="display: none;" m>
+                            <span><span><?php echo $this->__('Cancel') ?></span></span></button>
+                    </div>
+
+                <?php endif; ?>
+            </div>
+            <?php if ($isNewsletter): ?>
+                <p class="newsletter">
+                    <input type="checkbox" id="newsletter-signup" name="newsletter" value="1"
+                           title="<?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>"
+                           class="checkbox"
+                        <?php
+                        echo Mage::getStoreConfig('lotusbreath_onestepcheckout/general/autochecksubscriber') ? 'checked="checked"' : '';
+                        ?>
+                        />
+                    <label for="newsletter-signup">
+                        <?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>
+                    </label>
+                </p>
+            <?php endif; ?>
+            <?php echo $this->getChildHtml('agreements') ?>
+            <div id="saveOder-error" class="error"></div>
+            <?php
+                $totals = $this->getQuote()->getTotals();
+                $grandTotal = 0;
+                if(isset($totals['grand_total'])){
+                    $grandTotal = $totals['grand_total']->getValue();
+                }
+            ?>
+            <input type="hidden" id="grand_total_value" value="<?php echo $grandTotal; ?>" />
+            <button role='review-save' type="submit"
+                    title="<?php echo Mage::helper('checkout')->__('Place Order') ?>" name="submitbtn"
+                    id="lbonepage-place-order-btn" class="button btn-checkout">
+                <span><span><?php echo Mage::helper('checkout')->__('Place Order') ?></span></span>
+            </button>
+        </td>
+    </tr>
+    </tfoot>
+<?php endif; ?>

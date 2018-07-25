@@ -1,0 +1,209 @@
+<?php echo $this->getChildHtml("jsconfig");?>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('lotusbreath/onestepcheckout/js/override_mage.js') ?>"></script>
+
+<?php
+$isAllowComment = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowcomment');
+$isNewsletter = Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowsubscribe');
+if ($isNewsletter){
+    if(Mage::getSingleton('customer/session')->isLoggedIn()){
+        $subscriber = Mage::getModel('newsletter/subscriber')->loadByEmail(
+            Mage::getSingleton('customer/session')->getCustomer()->getEmail());
+        if($subscriber && $subscriber->getId())
+        {
+            $isNewsletter = false;
+        }
+
+    }
+}
+$discountpos = Mage::getStoreConfig('lotusbreath_onestepcheckout/layout/discountpos');
+$commentpos = Mage::getStoreConfig('lotusbreath_onestepcheckout/layout/commentpos');
+
+?>
+<?php //Zend_Debug::dump($this->getLayout()->getUpdate()->getHandles()); die(__FILE__); ?>
+<script id="loader-template" type="text/x-handlebars-template">
+    <div class="osc-loader" id="osc-loader">
+        <div class="osc-loader-background"></div>
+        <div class="loading-mask" data-role="loader">
+            <div class="loader">
+                <img alt="{{imgAlt}}" src="{{icon}}">
+                <p>{{loaderText}}</p>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+    var loaderJson = {
+        imgAlt: '<?php echo $this->__("Please wait...");?>',
+        icon: '<?php echo $this->getSkinUrl('lotusbreath/onestepcheckout/images/ajax-loader_3.gif');?>',
+        loaderText: '<?php echo $this->__("Please wait...");?>'
+    };
+</script>
+<div class="lt-checkoutpage" id="checkoutSteps">
+    <?php echo $this->getChildHtml("loginform");?>
+
+    <form id="checkout_form" name="checkout_form">
+        <div class="grid">
+            <?php if ($pageTitle = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/pagetitle')):?>
+                <h2 class="page-title"><?php echo $pageTitle;?></h2>
+            <?php endif;?>
+            <?php if ($pageDescription = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/pagedescription')):?>
+                <p class="page-description"><?php echo $pageDescription;?></p>
+            <?php endif;?>
+            <?php if (!Mage::helper('customer')->isLoggedIn()) : ?>
+                <p><?php echo $this->__("Already registered? Please");?>
+                    <a class="login_link"href="javascript:void(0);" id="loginFrmDlgO"> <?php echo $this->__("log in");?> </a>
+                </p>
+            <?php endif; ?>
+            <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/content/display_bottom_static_block')): ?>
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('onestepcheckout_top_block')->toHtml(); ?>
+            <?php endif;?>
+            <div class="row no-padding padding-mobile">
+                <div class="four columns">
+                    <h3 class="ptitle">
+                        <?php if ($billingHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/billing_header')):?>
+                            <?php echo $billingHeader;?>
+                        <?php else:?>
+                            1. <?php echo $this->__("Billing Information"); ?>
+                        <?php endif;?>
+
+                    </h3>
+                    <?php echo $this->getChildHtml('billing'); ?>
+                    <div id="shipping-area" style="display: none;">
+                        <h3 class="ptitle">
+                            <?php if ($shippingHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/shipping_address_header')):?>
+                                <?php echo $shippingHeader;?>
+                            <?php else:?>
+                                <?php echo $this->__("Shipping Information");?>
+                            <?php endif;?>
+
+                        </h3>
+                        <?php
+                        echo $this->getChildHtml('shipping'); ?>
+                    </div>
+                </div>
+                <div class="four columns">
+                    <div class="row">
+                        <?php if(!$this->getQuote()->isVirtual()):?>
+                        <h3 class="ptitle">
+                            <?php if ($shippingMethodHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/shipping_method_header')):?>
+                                <?php echo $shippingMethodHeader;?>
+                            <?php else:?>
+                                2. <?php echo $this->__("Shipping Method"); ?>
+                            <?php endif;?>
+                        </h3>
+                        <div id="shipping_partial">
+                            <?php echo $this->getChildHtml('shipping_method'); ?>
+                        </div>
+                        <?php endif; ?>
+                        <h3 class="ptitle">
+                            <?php if ($paymentMethodHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/payment_method_header')):?>
+                                <?php echo $paymentMethodHeader;?>
+                            <?php else:?>
+                                3. <?php echo $this->__("Payment Method");?>
+                            <?php endif;?>
+
+                        </h3>
+                        <div id="payment_partial">
+                            <?php echo $this->getChildHtml('payment'); ?>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <?php if( Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowgiftmessage') ):?>
+                            <div id="gift_patial">
+                            <?php if (!$this->getQuote()->isVirtual()): ?>
+                                <?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
+                            <?php endif; ?>
+                            </div>
+                        <?php endif;?>
+
+                        <?php if( $discountpos == 'below_payment' && Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowcoupon') ):?>
+                            <div id="coupon_patial">
+                                <h3 class="ptitle"><?php echo $this->__("Discount Codes");?></h3>
+
+                                <?php echo $this->getChildHtml('coupon'); ?>
+                            </div>
+                        <?php endif;?>
+
+                        <?php if( $isAllowComment && $commentpos == 'below_payment' ):?>
+                            <div id="comment-patial">
+                                <h3 class="ptitle"><?php echo $this->__("Comment");?></h3>
+                                <ul class="form-list">
+                                    <li class="fields">
+                                        <div class="input-box">
+                                            <textarea name="order_comment" placeholder="<?php echo $this->__("Type comment here");?>" class="input-text"></textarea>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php endif;?>
+
+                    </div>
+                </div>
+                <div class="four columns" >
+
+                    <?php if (false) :?>
+                    <h3 class="ptitle">
+                       <?php echo $this->__("Additional Information"); ?>
+                    </h3>
+                    <?php endif;?>
+
+                    <h3 class="ptitle">
+                        <?php if ($reviewOrderHeader = Mage::getStoreConfig('lotusbreath_onestepcheckout/content/review_header')):?>
+                            <?php echo $reviewOrderHeader;?>
+                        <?php else:?>
+                            4. <?php echo $this->__("Review Order"); ?>
+                        <?php endif;?>
+
+                    </h3>
+                    <div id="review_partial">
+                        <?php echo $this->getData("reviewHtml"); ?>
+                        <?php echo $this->getChildHtml('review'); ?>
+                    </div>
+                    <?php if( $discountpos == 'below_review' && Mage::getStoreConfig('lotusbreath_onestepcheckout/general/allowshowcoupon') ):?>
+                        <div id="coupon_patial">
+                            <h3 class="ptitle" ><?php echo $this->__("Discount Codes");?></h3>
+
+                            <?php echo $this->getChildHtml('coupon'); ?>
+                        </div>
+                    <?php endif;?>
+
+                    <?php if( $isAllowComment && $commentpos == 'below_review' ):?>
+                        <div id="comment-patial">
+                            <h3 class="ptitle"><?php echo $this->__("Comment");?></h3>
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <div class="input-box">
+                                        <textarea name="order_comment" placeholder="<?php echo $this->__("Type comment here");?>" class="input-text"></textarea>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php endif;?>
+                    <!--
+                    <?php if ($isNewsletter):?>
+                        <p class="newsletter">
+
+                            <input type="checkbox" id="newsletter-signup" name="newsletter" value="1"
+                                   title="<?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>"
+                                   class="checkbox"
+                                <?php
+                                echo Mage::getStoreConfig('lotusbreath_onestepcheckout/general/autochecksubscriber') ? 'checked="checked"' : '';
+                                ?>
+                                />
+                            <label for="newsletter-signup">
+                                <?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>
+                            </label>
+                        </p>
+                    <?php endif;?>
+                    -->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <?php if (Mage::getStoreConfig('lotusbreath_onestepcheckout/content/display_bottom_static_block')): ?>
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('onestepcheckout_bottom_block')->toHtml(); ?>
+            <?php endif;?>
+        </div>
+    </form>
+</div>

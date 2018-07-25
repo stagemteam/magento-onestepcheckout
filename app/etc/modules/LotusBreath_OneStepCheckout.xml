@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Lotusbreath_OneStepCheckout>
+        <active>true</active>
+        <codePool>local</codePool>
+        </Lotusbreath_OneStepCheckout>
+    </modules>
+</config>
