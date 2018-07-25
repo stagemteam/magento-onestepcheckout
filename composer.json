@@ -18,7 +18,7 @@
       ["app/design/frontend/base/default/layout/lotusbreath/onestepcheckout.xml", "app/design/frontend/base/default/layout/lotusbreath/onestepcheckout.xml"],
       ["app/design/frontend/base/default/template/lotusbreath/onestepcheckout/", "app/design/frontend/base/default/template/lotusbreath/onestepcheckout/"],
 
-      ["skin/frontend/base/default/lotusbreath/", "skin/frontend/base/default/lotusbreath/"]
+      ["skin/frontend/base/default/lotusbreath/onestepcheckout/", "skin/frontend/base/default/lotusbreath/onestepcheckout/"]
     ]
   }
 }
