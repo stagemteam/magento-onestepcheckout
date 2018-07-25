@@ -1,0 +1,181 @@
+<div id="ship-method" class="onestepcheckout_block">
+<?php 
+
+if (Mage::getSingleton('customer/session')->isLoggedIn())
+{
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+
+    $address_id = $customer->getDefaultBilling();
+    if ((int)$address_id){
+       $address = Mage::getModel('customer/address')->load($address_id);
+
+       /*
+       * Insert the output here 
+       * for example:
+       * echo $customer->getName();*/
+      // echo $address->getCity();
+	  //  echo $address->getRegion();
+      
+    }
+}
+  $defaul_shipping = 's_method_'.Mage::getStoreConfig("onestepcheckout/general/default_shipping_method");
+
+ ?>
+
+ <div class="op_block_title" id="shipping">
+		<span><?php	echo $this->__('Where to deliver?');	?></span>
+    </div>
+  <div class="full" id="l_areas">
+            <select class="validate-select required-entry" id="region"  onChange="getState(this.value);"  >
+                <option value="0"><?php echo $this->__('Select an areas')?></option>
+                <?php foreach ($this->Area() as $key => $value):?>
+                    <option value="<?php echo $key;?>"  ><?php echo $value;?></option>
+                <?php endforeach;?>
+            </select>
+             <input type="hidden"  name="billing[region]" id="billing_region" class="required-entry" value="-" />
+           
+  </div>
+ 
+ <div class="full" id="l_city" style="display:none">
+           <select name="state" id="city"  onChange="getCity(this.value);">
+		 <option value="-1"><?php echo $this->__('Select an city')?></option>
+         
+         </select> <input type="hidden"  name="billing[city]" id="billing_city" class="required-entry" value="-" />  
+  </div>
+
+
+ <div class="full" id="l_shipping" style="display:none">
+ <select class=" required-entry " id="m_shipping_method"  onChange="getShipping(this.value);"  >
+                <option value="-1"><?php echo $this->__('Shipping method')?></option>
+                <?php foreach ($this->getAllShippingMethods() as $item):?>
+                
+                    <option value="<?php echo $item['value'];?>"><?php echo $item['label'];?></option>
+               
+                <?php endforeach;?>
+            </select>
+ </div>
+ 
+ <div class="full" id="l_street" style="display:none">
+ 
+ </div>
+ 
+ 
+
+ 
+
+<script>
+ var j = jQuery.noConflict();
+function getState(val) {
+	j.ajax({type: "POST", url: "index/acity/", data:'key='+val,	success: function(data){j("#city").html(data);}});
+	j("#billing_region").val(j( "#region option:selected" ).text());
+	document.getElementById("l_city").style.display = "block";}
+
+function getCity(val) {
+	j.ajax({type: "POST",url: "index/ashipmethod/",	data:'key='+val,success: function(data){j("#m_shipping_method").html(data);}});
+	style="#<?php echo $defaul_shipping ?>";
+	j("#billing_city").val(j( "#city option:selected" ).text());
+	j(style).attr('checked', true);
+	document.getElementById("l_shipping").style.display = "block";
+	//checkout.update({'payment-method': 2,'shipping-method': 2,'review': 1})
+	}
+function getShipping(val) {
+	styleship="#s_method_"+val;
+	switch (val) {
+		case 'delivery_delivery':
+		j.ajax({ type: "POST", url: "index/adelivery/", data:'key='+val, success: function(data){j("#l_street").html(data);}});
+		document.getElementById("l_street").style.display = "block";
+	   break;
+	  case 'novapochta_novapochta':
+	   citykey= j('#city').val();
+	   j.ajax({ type: "POST", url: "index/anovapochta/", data:'key='+citykey, success: function(data){j("#l_street").html(data);}});
+	   j("#billing_street").val(j( "#m_warehouses option:selected" ).text());
+		document.getElementById("l_street").style.display = "block";
+	  break;
+    case 'pickup_pickup':
+     j.ajax({ type: "POST", url: "index/apickup/", data:'key='+j('#billing_city').val(), success: function(data){j("#l_street").html(data);}});
+	 document.getElementById("l_street").style.display = "block";
+     break;
+	}
+	
+	
+	j(styleship).attr('checked', true);
+	checkout.update({'payment-method': 1,'shipping-method': 1,'review': 1 })
+}
+
+	function getWarehouses(val) { 
+	 j("#billing_street").val(j( "#m_warehouses option:selected" ).text());
+checkout.update({'payment-method': 1, 'shipping-method': 1, 'review': 1});
+	 }
+	function getPickup(val) { 
+	 j("#billing_street").val(j( "#m_pickup option:selected" ).text());
+	 checkout.update({'payment-method': 1, 'shipping-method': 1, 'review': 1});
+	 }
+	 
+	
+
+
+
+</script>
+</div>
+<?php //print_r ($this->getAllShippingMethods()) ?>
+
+ <?php /*
+$logged		= $this->isCustomerLoggedIn();
+$has_addr	= $this->customerHasAddresses();
+?>
+
+
+<div class="full">
+					<label for="billing:street1" class="required">
+						<?php echo $this->__('Address') ?>
+					</label>
+					
+					<div class="data_area">
+						<input type="text" title="<?php echo $this->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->htmlEscape($this->getBillAddress()->getStreet(1)) ?>" class="t1 input-text  required-entry" />
+					</div>
+				</div>
+				<?php 
+				$csl	= $this->helper('customer/address')->getStreetLines();
+				for ($i = 2; $i <= $csl; $i++){ 
+				?>
+				<div class="full">
+					<div class="data_area">
+						<input type="text" name="billing[street][]" id="billing:street<?php echo $i?>" title="<?php echo $this->__('Street Address %s', $i) ?>" value="<?php echo $this->htmlEscape($this->getBillAddress()->getStreet($i)) ?>" class="t1" />
+					</div>
+				</div>
+				<?php 
+				}
+			?>
+			<div class="two_fields">
+			
+				<div class="short">
+					<label for="billing:city" class="required">
+						<?php echo $this->__('City') ?>
+					</label>					
+					<div class="data_area">
+						<input type="text" name="billing[city]" id="billing:city" title="<?php echo $this->__('City') ?>" value="<?php echo $this->htmlEscape($this->getBillAddress()->getCity()) ?>" class="validate-alpha t1 required-entry" maxlength="20"  />
+                        </div>
+				</div>			
+				<div class="short">
+					<label for="billing:region_id" class="required">
+						<?php echo $this->__('State / Province') ?>
+					</label>					
+					<div class="data_area">
+						<select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select required-entry" style="display:none;">
+							<option value=""><?php echo $this->__('Select One') ?></option>
+						</select>
+						<script type="text/javascript">
+						//<![CDATA[
+							$('billing:region_id').setAttribute('defaultValue',  "<?php echo $this->getBillAddress()->getRegionId() ?>");
+						//]]>
+						</script>
+						<input type="text" id="billing:region" name="billing[region]" value="<?php echo $this->htmlEscape($this->getBillAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="validate-alpha t1" maxlength="20" style="display:none;" />
+					</div>
+				</div>
+			</div>
+			<div class='clr'></div>  
+            
+    */?>        
+            
+			
+		

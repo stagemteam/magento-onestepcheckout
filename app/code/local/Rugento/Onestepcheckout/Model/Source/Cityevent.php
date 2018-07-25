@@ -1,0 +1,50 @@
+<?php //001d5
+// Copyright (c) <2017>, <Rugento.ru>
+// License URL http://www.rugento.ru/oferta.html
+// Support EMAIL support@rugento.ru
+// Support PHP Version 5.4-5.6
+// Allowed domens:
+// megamuscle.ua
+// www.megamuscle.ua
+// megamuscle.ua.dev
+// new.megamuscle.ua
+// dev.megamuscle.ua
+// develop.megamuscle.ua
+// test.megamuscle.ua
+// stage.megamuscle.ua
+// stage2.megamuscle.ua
+// Module Version: 4.2.20
+// Revision: 286
+// Data revision: 2017-04-05 09:12:11
+// FL
+
+?>
+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

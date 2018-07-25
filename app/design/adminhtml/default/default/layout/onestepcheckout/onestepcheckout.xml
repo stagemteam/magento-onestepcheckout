@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_customer_edit>
+        <remove name="optional_zip_countries"/> 
+    </adminhtml_customer_edit>
+</layout>

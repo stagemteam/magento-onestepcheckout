@@ -1,0 +1,102 @@
+
+<div class="page-title">
+    <h1 class='h1_opc'><?php echo Mage::getStoreConfig('onestepcheckout/general/title') ?></h1>    
+  <p class="title-description"> <?php echo Mage::getStoreConfig('onestepcheckout/general/description') ?> </p>
+    <?php if (!Mage::getSingleton('customer/session')->isLoggedIn()){ ?>
+      <?php if (Mage::getStoreConfig('onestepcheckout/general/logout')) : ?>
+    <p class="onestepcheckout_loginarea">
+        <a href="javascript:void(0)" class="onestepcheckout_loginlink" onClick='open_login();'>
+            <?php echo $this->__('Already registered? Click here to login') ?>
+        </a>
+    </p> 
+    <?php endif ?>   
+	<?php 	
+		echo $this->getChildHtml('customer.login');
+		echo $this->getChildHtml('customer.forgot');	
+    }    
+    ?>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<?php
+$seq_http	= (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']==='on');   
+?>
+<script type="text/javascript">
+	var http_type	= '<?php if($seq_http){echo 'https';}else{echo 'http';}?>'; 	
+	
+</script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/onestepcheckout.js') ?>"></script>
+
+<script type="text/javascript">countryRegions = <?php echo $this->helper('directory')->getRegionJson() ?></script>
+
+<form action="" id="onestepcheckout_orderform">
+<div class="col3-set onestepcheckout_datafields">
+    <div class="col-1" style="float:left">
+        <?php echo $this->getChildHtml('billing.address') ?>
+        <?php echo $this->getChildHtml('shipping.address') ?>
+    </div>
+
+    <div class="col-2" style="float:left">
+    	<div class="row_1"><?php echo $this->getChildHtml('ship.address') ?>
+        <?php echo $this->getChildHtml('shipping.method') ?>
+        </div>
+        <div class="row_2">
+		<?php echo $this->getChildHtml('payment.method') ?>
+         <div id="checkout-coupon-discount-load">
+           <?php if (Mage::getStoreConfig("onestepcheckout/general/coupon")=='1'):?>
+            <?php echo $this->getChildHtml('coupon') ?>
+            <?php endif ?>
+        </div>
+		
+        <?php if (Mage::getStoreConfig('onestepcheckout/general/comment')) : ?>
+		<div class="op_block_comment">
+        <div class="op_block_title">
+	    	<?php echo $this->helper('sales')->__('Comment') ?>
+	    </div>        
+        <div class="form_fields">
+            <div class="full">
+                <div class="data_area" id='comment-block'>
+                    <textarea name="order-comment" id="order-comment"><?php echo trim(Mage::getSingleton('customer/session')->getOrderCustomerComment()) ?></textarea>
+                </div>
+            </div>
+        </div>
+        </div>
+        <?php endif; ?>	</div>
+         <div class="row_3">
+        <?php echo $this->getChildHtml('review') ?>   
+        </div>
+    </div>
+
+   <!--  <div class="col-3" style="clear:both"> 
+        
+    </div> -->
+</div>
+ 
+</form>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var billingForm = new VarienForm('onestepcheckout_orderform');
+    var checkout = new COGOPC('onestepcheckout_orderform', {
+    	save    : '<?php echo $this->getUrl('onestepcheckout/index/saveOrder', array('_secure'=>$seq_http)) ?>',
+    	update  : '<?php echo $this->getUrl('onestepcheckout/index/updateCheckout', array('_secure'=>$seq_http)) ?>',
+        success : '<?php echo $this->getUrl('onestepcheckout/index/success', array('_secure'=>$seq_http)) ?>',
+        failure : '<?php echo $this->getUrl('checkout/cart') ?>'
+    }, "<?php echo $this->__('Please agree to all the terms and conditions.') ?>");
+
+    document.observe("dom:loaded", function() {
+        var win_triggers	= Array();
+   		$$('.checkout-agreements .agree a').each(function(item){
+   			var obj	= {
+   				el: $$('.' + item.className),
+   		   		event: 'click',
+				window: $(item.className + '-window')
+			};
+   			win_triggers.push(obj);
+        });
+		opc_window	= new COGOPC.Window({triggers: win_triggers});
+    });
+//]]>
+</script>

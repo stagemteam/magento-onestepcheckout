@@ -1,0 +1,1134 @@
+.onestepcheckout {
+    margin: 10px auto;
+}
+
+.onestepcheckout-left-container {
+    width: 33%;
+    float: left;
+}
+
+.onestepcheckout-right-container {
+    width: 67%;
+    float: left;
+}
+
+.onestepcheckout-address-container {
+    padding: 0 10px;
+}
+
+.onestepcheckout-shipping-container {
+    width: 49.99%;
+    float: left;
+    background: url("../../images/onestepcheckout/step-bg.png") no-repeat scroll left top transparent;
+    min-height: 100px;
+}
+
+.onestepcheckout-payment-container {
+    width: 49.99%;
+    float: left;
+    background: url("../../images/onestepcheckout/step-bg.png") no-repeat scroll left top transparent;
+    min-height: 100px;
+}
+
+.onestepcheckout-other-container {
+    width: 50%;
+    float: left;
+}
+
+.onestepcheckout-login {
+    float: right;
+}
+
+#co-billing-form {
+    display: block;
+    padding: 10px 0;
+}
+
+.onestepcheckout>h2 {
+    float: left;
+}
+
+.onestepcheckout #openloader {
+    float: right;
+}
+
+.onestepcheckout-login>a {
+    border-bottom: 1px dashed #0096DC;
+    color: #0096DC;
+    cursor: pointer;
+    float: right;
+    line-height: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.onestepcheckout-container .input-text,.onestepcheckout-container select,.onestepcheckout-container textarea,.onestepcheckout-login-content .input-text
+    {
+    width: 100%;
+    border: 1px solid #BEBCB7;
+    color: #2B363D;
+    padding: 3px;
+    font-size: 13px;
+    color: #555555;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.onestepcheckout-container .input-box {
+    padding-right: 8px;
+}
+
+.onestepcheckout-container .input-box-select {
+    padding-right: 0;
+}
+
+.onestepcheckout-shipping-container .sp-methods,.onestepcheckout-payment-container .sp-methods {
+    min-height: 100px;
+    margin: 0 10px 0 18px;
+}
+
+.onestepcheckout-title {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 8px;
+}
+
+.onestepcheckout-right-container .onestepcheckout-title {
+    margin-left: 18px;
+}
+
+.onestepcheckout-title i {
+    background: url(../../images/onestepcheckout/step-rondo.png) top left no-repeat;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 8px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: #fff;
+    font-style: normal;
+    font-size: 15px;
+    float: left;
+}
+
+.onestepcheckout-title strong {
+    display: inline-block;
+    float: left;
+}
+
+.onestepcheckout-ya-address {
+    padding: 2px 0 6px 10px;
+}
+
+#billing-new-address-form>ul {
+    padding-left: 10px;
+}
+
+.onestepcheckout-address-container div.field {
+    margin-bottom: 4px;
+}
+
+.onestepcheckout-address-container label.required {
+    font-weight: bold;
+}
+
+.onestepcheckout-address-container label {
+    color: #5F696F;
+    font-size: 11px;
+}
+
+.onestepcheckout-address-container label.for-required em {
+    display: none;
+}
+
+.onestepcheckout-address-container label.required em {
+    color: red;
+    display: inline;
+    padding-left: 2px;
+}
+
+.onestepcheckout-shipping-container .sp-methods>div,.onestepcheckout-shipping-container .sp-methods>ul,.onestepcheckout-payment-container .sp-methods>div,.onestepcheckout-payment-container .sp-methods>ul
+    {
+    padding-left: 10px;
+}
+
+.onestepcheckout-comment-container .input-box {
+    margin-left: 28px;
+}
+
+.order-review-footer .onestepcheckout-review-div {
+    padding-left: 28px;
+}
+
+.onestepcheckout-comment-container,.order-review-footer {
+    margin-top: 18px;
+}
+
+.onestepcheckout-totals-container {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    float: right;
+}
+
+.chzn-container {
+    width: 100% !important;
+}
+
+.loadmask {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -moz-opacity: 0.4;
+    opacity: .40;
+    filter: alpha(opacity =       40);
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    zoom: 1;
+    padding: 0;
+}
+
+.onestepcheckout-container .sp-methods .loadmask-msg,.onestepcheckout-totals-container .loadmask-msg
+    {
+    z-index: 20001;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+}
+
+.loadmask-msg div {
+    padding: 8px 13px 8px 28px;
+    background: #fbfbfb url('../../images/onestepcheckout/loading.gif') no-repeat 5px 8px;
+    line-height: 16px;
+    border: 1px solid #ccc;
+    color: #222;
+    font: normal 11px tahoma, arial, helvetica, sans-serif;
+    cursor: wait;
+}
+
+.masked { /* overflow: hidden !important; */
+
+}
+
+.masked-relative {
+    position: relative !important;
+}
+
+.masked-hidden {
+    visibility: hidden !important;
+}
+
+.onestepcheckout-discount-container {
+    margin: 18px 0 0 28px;
+}
+
+.onestepcheckout-discount-container .input-box {
+    background: url("../../images/onestepcheckout/sertificat.png") no-repeat scroll left top transparent;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 50px;
+}
+
+.onestepcheckout-discount-container .input-box label {
+    font-weight: bold;
+}
+
+.onestepcheckout-discount-container .input-text {
+    width: 120px;
+}
+
+#shopping-cart-totals-table td,#shopping-cart-totals-table th {
+    padding: 1px 4px;
+    font-size: 14px;
+}
+
+.footer-onestepcheckout {
+    border-top: 3px solid #C2C2C2;
+    margin: 0 0 0 28px;
+    padding-top: 12px;
+}
+
+.onestepcheckout-register-container {
+    float: left;
+    padding-left: 10px;
+    padding-bottom: 4px;
+}
+
+.onestepcheckout-register-container .checkbox {
+    margin-bottom: 3px;
+}
+
+.onestepcheckout-checout-button-container {
+    float: right;
+    margin-left: 5px;
+}
+
+#onestepcheckout-error {
+    clear: left;
+}
+
+.checkout-agreements li {
+    margin: 0;
+}
+
+.checkout-agreements .agree {
+    padding: 0 0 1px 2px;
+    margin: 0 0 9px 9px;
+}
+
+.onestepcheckout-agreements-container {
+    margin-bottom: 12px;
+}
+
+.checkout-agreements .agreement-content {
+    border: 1px solid #CCCCCC;
+}
+
+.onestepcheckout-payment-container .sp-methods .onestepcheckout-method-color {
+    margin: 2px 0 2px 10px;
+    padding: 4px 8px;
+}
+
+.onestepcheckout-payment-container .sp-methods label,.onestepcheckout-shipping-container .sp-methods label
+    {
+    color: #384750;
+}
+
+.onestepcheckout-payment-container .sp-methods .radio,.onestepcheckout-shipping-container .sp-methods .radio
+    {
+    margin: 0 1px 3px 0;
+}
+
+.onestepcheckout-method-color-true {
+    background: none repeat scroll 0 0 #ECF7DA;
+}
+
+.onestepcheckout-payment-container .payment-html .form-list {
+    margin-left: 20px;
+    padding: 0;
+}
+
+.onestepcheckout-payment-container .payment-html .form-list .input-box {
+    width: 100%;
+    padding: 0;
+    margin-right: 6px;
+}
+
+.onestepcheckout-payment-container .payment-html .form-list .input-box .input-text {
+    width: 97%;
+}
+
+.onestepcheckout-shipping-container span.price {
+    color: #8F8F8F;
+    float: right;
+    font-size: 11px;
+}
+
+.onestepcheckout-shipping-container li {
+    line-height: 19px;
+    margin: 2px 0;
+    padding: 4px;
+}
+
+.onestepcheckout-shipping-container .onestepcheckout-methods-label {
+    margin-top: 4px;
+    font-weight: bold;
+}
+
+.onestepcheckout-shipping-container .sp-methods label {
+    font-weight: normal;
+}
+
+.onestepcheckout-shipping-container .sp-methods label.bolder {
+    font-weight: bold;
+}
+
+.onestepcheckout-login-content {
+    clear: both;
+    float: right;
+    margin: 4px 0 0;
+}
+
+input.input-text.onestepcheckout-error-field,textarea.onestepcheckout-error-field,select.onestepcheckout-error-field,.chzn-container.onestepcheckout-error-field a,p.agree.onestepcheckout-error-field
+    {
+    background: none repeat scroll 0 0 #FFDCDD;
+}
+
+#pickup-field label {
+    font-weight: bold;
+}
+
+#pickup-field {
+    padding: 4px 0 2px;
+}
+
+#pickup-field .checkbox {
+    margin-bottom: 3px;
+}
+
+.onestepcheckout-address-container .onestepcheckout-label-address {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    line-height: normal;
+}
+
+.onestepcheckout-customer-address-title label {
+    font-weight: bold;
+    font-size: 13px;
+    line-height: normal;
+}
+
+.onestepcheckout-customer-address-title .radio {
+    margin-bottom: 3px;
+    margin-right: 2px;
+}
+
+.onestepcheckout-customer-address-address {
+    padding-left: 17px;
+}
+
+.onestepcheckout-customer-address-title {
+    margin-bottom: 3px;
+}
+
+.chzn-container-single.chzn-container-active a {
+    background-color: #EDF7FD;
+}
+
+.alert {
+    padding: 8px 35px 8px 14px;
+    margin: 4px 0;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.alert,.alert-heading {
+    color: #c09853;
+}
+
+.alert .close {
+    position: relative;
+    top: 1px;
+    right: -27px;
+    line-height: 18px;
+    text-decoration: none;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-success,.alert-success .alert-heading {
+    color: #468847;
+}
+
+.alert-danger,.alert-error {
+    background-color: #FFDCDD;
+    border-color: #eed3d7;
+}
+
+.alert-danger,.alert-error,.alert-danger .alert-heading,.alert-error .alert-heading {
+    color: #b94a48;
+}
+
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-info,.alert-info .alert-heading {
+    color: #3a87ad;
+}
+
+.alert-block {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.alert-block>p,.alert-block>ul {
+    margin-bottom: 0;
+}
+
+.alert-block p+p {
+    margin-top: 5px;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity =       20);
+}
+
+.close:hover {
+    color: #000000;
+    text-decoration: none;
+    opacity: 0.4;
+    filter: alpha(opacity =       40);
+    cursor: pointer;
+}
+
+.fade {
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -ms-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+    opacity: 0;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.collapse {
+    -webkit-transition: height 0.35s ease;
+    -moz-transition: height 0.35s ease;
+    -ms-transition: height 0.35s ease;
+    -o-transition: height 0.35s ease;
+    transition: height 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    height: 0;
+}
+
+.collapse.in {
+    height: auto;
+}
+
+.onestepcheckout-login-content label {
+    display: block;
+    font-weight: bold;
+}
+
+.onestepcheckout-login-content .input-text {
+    width: 120px;
+    margin-right: 6px;
+}
+
+.onestepcheckout-login-content .button-login {
+    margin-bottom: 1px;
+}
+
+.field-note {
+    padding-left: 10px;
+    background: url(../../images/onestepcheckout/note_bg.gif) center left no-repeat;
+    font-size: 10px;
+    line-height: 12px;
+    margin: 2px 0 0 4px;
+    color: #484848;
+}
+
+.empty-methods.sp-methods {
+    margin: 10px 10px 6px 32px;
+}
+
+/*
+ * UI
+ */
+.ui-autocomplete {
+    position: absolute;
+    cursor: default;
+}
+
+.ui-autocomplete-loading {
+    background: url(../../images/onestepcheckout/ui-anim_basic_16x16.gif) right center no-repeat
+        !important;
+}
+
+.ui-autocomplete.ui-menu {
+    background: #fff;
+    border: #BEBCB7 1px solid;
+    border-top: none;
+}
+
+.ui-autocomplete.ui-menu .ui-menu-item {
+    text-align: left;
+}
+
+/* workarounds */
+* html .ui-autocomplete {
+    width: 1px;
+} /* without this, the menu expands to 100% in IE6 */
+.ui-menu {
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+    display: block;
+    float: left;
+}
+
+.ui-menu .ui-menu {
+    margin-top: -3px;
+}
+
+.ui-menu .ui-menu-item {
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+    float: left;
+    clear: left;
+    width: 100%;
+}
+
+.ui-menu .ui-menu-item a {
+    text-decoration: none;
+    display: block;
+    padding: .2em .4em;
+    line-height: 18px;
+    zoom: 1;
+    border: 1px solid #fff;
+}
+
+.ui-menu .ui-menu-item a.ui-state-hover,.ui-menu .ui-menu-item a.ui-state-active {
+    font-weight: normal;
+    /*margin: -1px;*/
+    background: #F7FDE1;
+    border: 1px solid #B6B6B6;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    font-size: 14px;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: 14px;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: 14px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-size: 14px;
+}
+
+.checkout-agreements .agree input.checkbox {
+    margin-bottom: 3px;
+}
+
+.postcode-help {
+    font-size: 11px;
+}
+
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.ui-widget-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ui-datepicker {
+    width: 17em;
+    padding: .2em .2em 0;
+    display: none;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    position: relative;
+    padding: .2em 0;
+}
+
+.ui-datepicker .ui-datepicker-prev,.ui-datepicker .ui-datepicker-next {
+    position: absolute;
+    top: 2px;
+    width: 1.8em;
+    height: 1.8em;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover,.ui-datepicker .ui-datepicker-next-hover {
+    top: 1px;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+    left: 2px;
+}
+
+.ui-datepicker .ui-datepicker-next {
+    right: 2px;
+}
+
+.ui-datepicker .ui-datepicker-prev-hover {
+    left: 1px;
+}
+
+.ui-datepicker .ui-datepicker-next-hover {
+    right: 1px;
+}
+
+.ui-datepicker .ui-datepicker-prev span,.ui-datepicker .ui-datepicker-next span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+    font-size: 1em;
+    margin: 1px 0;
+}
+
+.ui-datepicker select.ui-datepicker-month-year {
+    width: 100%;
+}
+
+.ui-datepicker select.ui-datepicker-month,.ui-datepicker select.ui-datepicker-year {
+    width: 49%;
+}
+
+.ui-datepicker table {
+    width: 100%;
+    font-size: .9em;
+    border-collapse: collapse;
+    margin: 0 0 .4em;
+}
+
+.ui-datepicker th {
+    padding: .7em .3em;
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+}
+
+.ui-datepicker td {
+    border: 0;
+    padding: 1px;
+}
+
+.ui-datepicker td span,.ui-datepicker td a {
+    display: block;
+    padding: .2em;
+    text-align: right;
+    text-decoration: none;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane {
+    background-image: none;
+    margin: .7em 0 0 0;
+    padding: 0 .2em;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+    float: right;
+    margin: .5em .2em .4em;
+    cursor: pointer;
+    padding: .2em .6em .3em .6em;
+    width: auto;
+    overflow: visible;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+    float: left;
+}
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi {
+    width: auto;
+}
+
+.ui-datepicker-multi .ui-datepicker-group {
+    float: left;
+}
+
+.ui-datepicker-multi .ui-datepicker-group table {
+    width: 95%;
+    margin: 0 auto .4em;
+}
+
+.ui-datepicker-multi-2 .ui-datepicker-group {
+    width: 50%;
+}
+
+.ui-datepicker-multi-3 .ui-datepicker-group {
+    width: 33.3%;
+}
+
+.ui-datepicker-multi-4 .ui-datepicker-group {
+    width: 25%;
+}
+
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header {
+    border-left-width: 0;
+}
+
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+    border-left-width: 0;
+}
+
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+    clear: left;
+}
+
+.ui-datepicker-row-break {
+    clear: both;
+    width: 100%;
+    font-size: 0em;
+}
+
+/* RTL support */
+.ui-datepicker-rtl {
+    direction: rtl;
+}
+
+.ui-datepicker-rtl .ui-datepicker-prev {
+    right: 2px;
+    left: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-next {
+    left: 2px;
+    right: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+    right: 1px;
+    left: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+    left: 1px;
+    right: auto;
+}
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+    clear: right;
+}
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+    float: left;
+}
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current {
+    float: right;
+}
+
+.ui-datepicker-rtl .ui-datepicker-group {
+    float: right;
+}
+
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header {
+    border-right-width: 0;
+    border-left-width: 1px;
+}
+
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+    border-right-width: 0;
+    border-left-width: 1px;
+}
+
+/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
+.ui-datepicker-cover {
+    position: absolute; /*must have*/
+    z-index: -1; /*must have*/
+    filter: mask(); /*must have*/
+    top: -4px; /*must have*/
+    left: -4px; /*must have*/
+    width: 200px; /*must have*/
+    height: 200px; /*must have*/
+}
+
+/* Component containers
+----------------------------------*/
+.ui-widget-content {
+    border: 1px solid #dddddd;
+    background: #eeeeee;
+    color: #333333;
+}
+
+.ui-widget-header {
+    border: 1px solid #e78f08;
+    background: #f6a828 url(../../images/onestepcheckout/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50%
+        repeat-x;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.ui-widget-header a {
+    color: #ffffff;
+}
+
+.ui-icon {
+    width: 16px;
+    height: 16px;
+    background-image: url(../../images/onestepcheckout/ui-icons_222222_256x240.png);
+}
+
+.ui-widget-content .ui-icon {
+    background-image: url(../../images/onestepcheckout/ui-icons_222222_256x240.png);
+}
+
+.ui-widget-header .ui-icon {
+    background-image: url(../../images/onestepcheckout/ui-icons_ffffff_256x240.png);
+}
+
+.ui-state-default .ui-icon {
+    background-image: url(../../images/onestepcheckout/ui-icons_ef8c08_256x240.png);
+}
+
+.ui-state-hover .ui-icon,.ui-state-focus .ui-icon {
+    background-image: url(../../images/onestepcheckout/ui-icons_ef8c08_256x240.png);
+}
+
+.ui-state-active .ui-icon {
+    background-image: url(../../images/onestepcheckout/ui-icons_ef8c08_256x240.png);
+}
+
+.ui-state-highlight .ui-icon {
+    background-image: url(../../images/onestepcheckout/ui-icons_228ef1_256x240.png);
+}
+
+.ui-state-error .ui-icon,.ui-state-error-text .ui-icon {
+    background-image: url(../../images/onestepcheckout/ui-icons_ffd27a_256x240.png);
+}
+
+.ui-icon-circle-triangle-e {
+    background-position: -48px -192px;
+}
+
+.ui-icon-circle-triangle-s {
+    background-position: -64px -192px;
+}
+
+.ui-icon-circle-triangle-w {
+    background-position: -80px -192px;
+}
+
+.ui-icon-circle-triangle-n {
+    background-position: -96px -192px;
+}
+
+.shipping-picker,.shipping-time {
+    margin: 1px 0 1px 12px;
+}
+
+.shipping-picker button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+}
+
+#datepicker {
+    width: auto;
+    margin-right: 3px;
+}
+
+.password-control label {
+    display: inline-block;
+    margin-top: 4px;
+}
+
+.customer-dob .input-text {
+	width: 80px;
+}
+.customer-dob > div {
+	float: left;
+	margin-right: 16px;
+}
+.dob-container > label, .gender-container > label {
+	margin-left: 28px;
+}
+.dob-container, .gender-container {
+	margin: 4px 0;
+}
+
+/************RESPONSIVE****************/
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .main .onestepcheckout {
+        margin: 0 auto;
+        width: 600px !important;
+        min-width: 600px;
+    }
+    .order-review-footer {
+        display: none;
+    }
+    .main .onestepcheckout-left-container {
+        width: 300px;
+    }
+    .main .onestepcheckout-right-container {
+        width: 300px;
+    }
+    .main .onestepcheckout-shipping-container,.main .onestepcheckout-payment-container {
+        float: none;
+        width: auto;
+        background: none;
+        margin-bottom: 12px;
+    }
+    .main .onestepcheckout-payment-container {
+        min-height: auto;
+    }
+    .main .onestepcheckout-shipping-container .sp-methods,.main .onestepcheckout-payment-container .sp-methods
+        {
+        min-height: auto;
+    }
+    .main .onestepcheckout-comment-container {
+        margin-top: 0;
+    }
+    .main .onestepcheckout-discount-container .input-box {
+        background: none;
+        padding: 0;
+        text-align: center;
+        height: auto;
+    }
+    #onestepcheckout-sertificat input {
+        margin-bottom: 8px;
+    }
+    #onestepcheckout-sertificat label,#onestepcheckout-sertificat input {
+        width: 96%;
+    }
+    .main .onestepcheckout-totals-container {
+        margin: 0;
+    }
+    .top-dropdowns {
+        top: 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .main .onestepcheckout {
+        margin: 0 auto;
+        width: 300px;
+    }
+    .order-review-footer {
+        display: none;
+    }
+    .main .onestepcheckout-left-container {
+        width: 300px;
+        float: none;
+        margin-bottom: 10px;
+    }
+    .main .onestepcheckout-right-container {
+        width: 300px;
+        float: none;
+    }
+    .main .onestepcheckout-payment-container {
+        min-height: auto;
+    }
+    .main .onestepcheckout-shipping-container,.main .onestepcheckout-payment-container {
+        float: none;
+        width: auto;
+        background: none;
+    }
+    .main .onestepcheckout-shipping-container .sp-methods,.main .onestepcheckout-payment-container .sp-methods
+        {
+        min-height: auto;
+    }
+    .main .onestepcheckout-comment-container {
+        margin-top: 0;
+    }
+    .main .onestepcheckout-discount-container .input-box {
+        background: none;
+        padding: 0;
+        text-align: center;
+        height: auto;
+    }
+    .main .onestepcheckout-right-container .onestepcheckout-title {
+        margin-left: 10px;
+    }
+    .main .onestepcheckout-shipping-container,.main .onestepcheckout-payment-container {
+        margin-bottom: 12px;
+    }
+    .main .onestepcheckout-shipping-container .sp-methods,.main .onestepcheckout-payment-container .sp-methods
+        {
+        margin-left: 10px;
+    }
+    .main .onestepcheckout-comment-container .input-box {
+        margin-left: 20px;
+        padding-right: 10px;
+    }
+    .main .onestepcheckout-discount-container .input-box {
+        background: none;
+        padding: 0;
+        text-align: center;
+        height: auto;
+    }
+    .main .onestepcheckout-discount-container {
+        margin-left: 20px;
+    }
+    #onestepcheckout-sertificat input {
+        margin-bottom: 8px;
+    }
+    #onestepcheckout-sertificat label,#onestepcheckout-sertificat input {
+        width: 96%;
+    }
+    .main .onestepcheckout-totals-container {
+        margin: 0;
+    }
+    .main .footer-onestepcheckout {
+        margin: 0;
+    }
+    .main .onestepcheckout-checout-button-container {
+        float: none;
+        margin: 0;
+    }
+    .btn-proceed-checkout.btn-checkout {
+        width: 100%;
+        display: inline-block;
+    }
+    .btn-proceed-checkout.btn-checkout>span {
+        width: 100%;
+    }
+    .btn-proceed-checkout.btn-checkout span span {
+        width: 75%;
+    }
+    .main .onestepcheckout-login {
+        display: none;
+    }
+}
+
+.clearer:after {
+    display: block;
+    content: ".";
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.qty-box {
+	width: 94px;
+}
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+	float: left;
+	margin: 0 1px;
+	
+}
+input.btn-number { width:25px; height:25px; float: left; line-height: normal; margin-top: 3px;}
