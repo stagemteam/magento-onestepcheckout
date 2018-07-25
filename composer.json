@@ -20,8 +20,8 @@
       ["app/design/adminhtml/default/default/layout/onestepcheckout/", "app/design/adminhtml/default/default/layout/onestepcheckout/"],
 
       ["skin/frontend/base/default/images/onestepcheckout/", "skin/frontend/base/default/images/onestepcheckout/"],
-      ["skin/frontend/default/default/js/onestepcheckout/", "skin/frontend/default/default/js/onestepcheckout/"],
-      ["skin/frontend/default/default/css/onestepcheckout/", "skin/frontend/default/default/css/onestepcheckout/"]
+      ["skin/frontend/base/default/js/onestepcheckout/", "skin/frontend/base/default/js/onestepcheckout/"],
+      ["skin/frontend/base/default/css/onestepcheckout/", "skin/frontend/base/default/css/onestepcheckout/"]
     ]
   }
 }
