@@ -16,7 +16,7 @@
       ["app/locale/ru_RU/onestepcheckout/", "app/locale/ru_RU/onestepcheckout/"],
       
       ["app/design/frontend/base/default/template/onestepcheckout/", "app/design/frontend/base/default/template/onestepcheckout/"],
-      ["app/design/frontend/base/default/layout/onestepcheckout/", "app/design/frontend/dbase/default/layout/onestepcheckout/"],
+      ["app/design/frontend/base/default/layout/onestepcheckout/", "app/design/frontend/base/default/layout/onestepcheckout/"],
       ["app/design/adminhtml/default/default/layout/onestepcheckout/", "app/design/adminhtml/default/default/layout/onestepcheckout/"],
 
       ["skin/frontend/base/default/images/onestepcheckout/", "skin/frontend/base/default/images/onestepcheckout/"],
