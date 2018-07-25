@@ -1,0 +1,16 @@
+<config>
+    <modules>
+        <Lotusbreath_OneStepCheckout>
+            <version>1.0.0</version>
+        </Lotusbreath_OneStepCheckout>
+    </modules>
+
+    <global>
+        <models>
+            <lotus_checkout>
+                <class>Lotusbreath_Checkout_Model</class>
+            </lotus_checkout>
+        </models>
+    </global>
+
+</config>

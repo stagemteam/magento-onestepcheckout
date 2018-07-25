@@ -12,7 +12,9 @@
   "extra": {
     "map": [
       ["app/etc/modules/LotusBreath_OneStepCheckout.xml", "app/etc/modules/LotusBreath_OneStepCheckout.xml"],
+      ["app/etc/modules/LotusBreath_Checkout.xml", "app/etc/modules/LotusBreath_Checkout.xml"],
       ["app/code/local/Lotusbreath/OneStepCheckout/", "app/code/local/Lotusbreath/OneStepCheckout/"],
+      ["app/code/local/Lotusbreath/Checkout/", "app/code/local/Lotusbreath/Checkout/"],
       ["app/locale/ru_RU/Lotusbreath_Onestepcheckout.csv", "app/locale/ru_RU/Lotusbreath_Onestepcheckout.csv"],
 
       ["app/design/frontend/base/default/layout/lotusbreath/onestepcheckout.xml", "app/design/frontend/base/default/layout/lotusbreath/onestepcheckout.xml"],
